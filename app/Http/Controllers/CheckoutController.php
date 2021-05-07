@@ -13,6 +13,7 @@ use Exception;
 
 use Midtrans\Snap;
 use Midtrans\Config;
+use Midtrans\Notification;
 
 class CheckoutController extends Controller
 {
@@ -89,7 +90,90 @@ class CheckoutController extends Controller
 
     public function callback(Request $requst)
     {
-        
+        // set configurasi midtrans
+        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$isProduction   = config('services.midtrans.isProduction');
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        // instan midtrans notification
+        $notification = new Notification();
+
+        // asign ke variabel untuk memudahkan coding
+        $staus = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
+        $order_id = $notification->order_id;
+
+        // cari transaksi berdasarkan id
+        $transaction = Transaction::findOrFail($order_id);
+
+        // handle midtrans status
+        if ($status == 'capture') {
+            if ($type == 'credit_card') {
+                if ($fraud == 'challenge') {
+                    $transaction->status = 'PENDING';
+                }
+                else{
+                    $transaction->status = 'SUCCESS';
+                }
+            }
+        }
+        else if($status == 'sattlement'){
+            $transaction->status = 'SUCCESS';
+        }
+        else if($status == 'pending'){
+            $transaction->status = 'PENDING';
+        }
+        else if($status == 'deny'){
+            $transaction->status = 'CANCELlED';
+        }
+        else if($status == 'expire'){
+            $transaction->status = 'CANCELlED';
+        }
+        else if($status == 'cancel'){
+            $transaction->status = 'CANCELlED';
+        }        
+
+        // simpan transaksi
+        $transaction->save();
+
+        // kirimkan email
+        if ($transaction) {
+            if ($status == 'capture' && $fraud == 'accept') {
+                //
+            }
+            else if ($status == 'settlement') {
+                //
+            }
+            else if ($status == 'success') {
+                //
+            }
+            else if ($status == 'capture' && $fraud == 'challenge') {
+                return response()->json([
+                    'meta' => [
+                        'code' => 200,
+                        'message' => 'Midtrans Payment Challenge'
+                    ]
+                ]);
+            }
+            else{
+                return response()->json([
+                    'meta' => [
+                        'code' => 200,
+                        'message' => 'Midtrans Payment not Challenge'
+                    ]
+                ]);
+            }
+            return response()->json([
+                    'meta' => [
+                        'code' => 200,
+                        'message' => 'Midtrans Notification Success'
+                    ]
+                ]);
+        }
+
+
     }
 }
 

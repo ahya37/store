@@ -53,7 +53,7 @@
               Categories
             </a>
              <a
-              href="#"
+              href="{{  route('transactions.index')  }}"
               class="list-group-item list-group-item-action"
             >
               Transactions
@@ -110,22 +110,33 @@
                         alt=""
                         class="reounded-circle mr-2 profile-picture"
                       />
-                      Hi, Ahya
+                      Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu">
-                      <a href="/" class="dropdown-item">Logout</a>
+                      <a  class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        Logout
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                        </form>
                     </div>
                   </li>
                 </ul>
 
-                <ul class="navbar-nav d-block d-lg-none">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link"> Hi, Ahya </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link d-inline-block"> Cart</a>
-                  </li>
-                </ul>
+                 <ul class="navbar-nav d-block d-lg-none">
+                    <li class="nav-item">
+                        <a href="{{ route('admin-dashboard') }}" class="nav-link">
+                            Hi, {{ Auth::user()->name }}
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('cart') }}" class="nav-link d-inline-block">
+                            Cart
+                        </a>
+                    </li> --}}
+                </ul>  
               </div>
             </div>
           </nav>
