@@ -89,7 +89,7 @@
                   </a>
                 @endauth
                  <a 
-                    href="{{ route('login') }}" 
+                    href="https://api.whatsapp.com/send?phone=6287881521500&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
                     class="btn btn-success px-4 text-white btn-block mb-3">
                       Beli Via Wathsapp
                   </a>
