@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="page-content page-home">
-      <section class="store-trend-categories">
+      {{-- <section class="store-trend-categories">
         <div class="container">
           <div class="row">
             <div class="col-12" data-aos="fade-up">
@@ -35,9 +35,9 @@
             @endforelse
           </div>
         </div>
-      </section>
+      </section> --}}
 
-      {{-- <section class="store-new-products">
+      <section class="store-new-products">
         <div class="container">
           <div class="row">
             <div class="col-12" data-aos="fade-up">
@@ -88,6 +88,6 @@
             </div>
           </div>
         </div>
-      </section> --}}
+      </section>
     </div>
 @endsection

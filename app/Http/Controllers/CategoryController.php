@@ -25,6 +25,6 @@ class CategoryController extends Controller
         $categories = Category::all();
         $category = Category::where('slug', $slug)->FirstOrFail();
         $products   = Product::with(['galleries'])->where('categories_id', $category->id)->paginate(10);
-        return view('pages.category', compact('categories','products'));
+        return view('pages.category-detail', compact('categories','products'));
     }
 }
