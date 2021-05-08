@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products   = Product::with(['galleries'])->take(20)->get();
+        $products   = Product::with(['galleries'])->inRandomOrder()->take(20)->get();
         return view('pages.home', compact('categories','products'));
     }
 }
