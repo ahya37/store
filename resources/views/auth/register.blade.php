@@ -14,7 +14,7 @@
                 @csrf
 
                 <div class="form-group">
-                  <label>Full Name</label>
+                  <label>Nama Lengkap</label>
                   <input id="name" 
                         type="text" 
                         class="form-control @error('name') is-invalid @enderror" 
@@ -32,7 +32,7 @@
                   @enderror
                 </div>
                 <div class="form-group">
-                  <label>Email Address</label>
+                  <label>Email</label>
                    <input id="email" 
                           v-model="email"
                           @change="checkForEmailAvailability()"
@@ -74,7 +74,7 @@
                    @enderror
                 </div>
                 <div class="form-group">
-                  <label>Store</label>
+                  <label>Toko</label>
                   <p class="text-muted">Apakah Anda ingin membuka toko ?</p>
                   <div
                     class="custom-control custom-radio custom-control-inline"
@@ -88,7 +88,7 @@
                       :value="true"
                     />
                     <label for="openStoreTrue" class="custom-control-label">
-                      Iya, boleh
+                      Ya
                     </label>
                   </div>
                   <div
@@ -103,7 +103,7 @@
                       :value="false"
                     />
                     <label for="openStoreFalse" class="custom-control-label">
-                      Engggak, terimakasih
+                      Tidak
                     </label>
                   </div>
                 </div>
