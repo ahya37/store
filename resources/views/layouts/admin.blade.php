@@ -38,31 +38,31 @@
               href="{{ route('product.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/product')) ? 'active' : '' }}"
             >
-              Products
+              Produk
             </a>
             <a
               href="{{ route('product-gallery.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"
             >
-              Galleries
+              Galleri
             </a>
             <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
             >
-              Categories
+              Kategori
             </a>
              <a
               href="{{  route('transactions.index')  }}"
               class="list-group-item list-group-item-action"
             >
-              Transactions
+              Transaksi
             </a>
             <a
               href="{{ route('user.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }}"
             >
-              Users
+              Pengguna
             </a>
             <a
               href="#"
