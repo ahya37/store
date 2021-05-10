@@ -12,8 +12,8 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Create New Product</h2>
-                <p class="dashboard-subtitle">Create your own product</p>
+                <h2 class="dashboard-title">Buat Produk Baru</h2>
+                <p class="dashboard-subtitle">Buat produk baru sendiri</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
@@ -35,7 +35,7 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Product Name</label>
+                                <label>Nama Produk</label>
                                 <input
                                   type="text"
                                   class="form-control"
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Price</label>
+                                <label>Harga</label>
                                 <input
                                   type="number"
                                   name="price"
@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
-                                <label>Description</label>
+                                <label>Deskripsi</label>
                                 <textarea name="description" id="editor"></textarea>
                               </div>
                             </div>
@@ -81,9 +81,9 @@
                                   autofocus
                                   name="photo"
                                 />
-                                <p class="text-muted">
+                                {{-- <p class="text-muted">
                                   Kamu dapat memilih lebih dari satu file
-                                </p>
+                                </p> --}}
                               </div>
                             </div>
                           </div>

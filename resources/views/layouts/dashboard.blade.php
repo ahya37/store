@@ -37,25 +37,25 @@
               href="{{ route('dashboard-product') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/product*')) ? 'active' : '' }}"
             >
-              My Products
+              Produk Saya
             </a>
             <a
               href="{{ route('dashboard-transactions') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/transaction*')) ? 'active' : '' }}"
             >
-              Transactions
+              Transaksi
             </a>
             <a
               href="{{ route('dashboard-settings-store') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/setting*')) ? 'active' : '' }}"
             >
-              Store Settings
+              Pengaturan Toko
             </a>
             <a
               href="{{ route('dashboard-settings-account') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
             >
-              My Account
+              Akun Saya
             </a>
             <a
               href="{{ route('logout') }}"
@@ -63,7 +63,7 @@
               document.getElementById('logout-form').submit();"
               class="list-group-item list-group-item-action"
             >
-              Sign Out
+              Log Out
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                   @csrf

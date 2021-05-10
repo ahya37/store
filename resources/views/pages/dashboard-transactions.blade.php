@@ -12,12 +12,12 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Transactions</h2>
+                <h2 class="dashboard-title">Transaksi</h2>
                 <p class="dashboard-subtitle">
-                  Big result start from the small one
+                  {{-- Big result start from the small one --}}
                 </p>
               </div>
-              <div class="dashboard-content">
+              <div class="dashboard-content mt-4">
                 <div class="row">
                   <div class="col-12 mt-2">
                     <ul
@@ -34,7 +34,7 @@
                           role="tab"
                           aria-controls="pills-home"
                           aria-selected="true"
-                          >Sell Product</a
+                          >Produk Dijual</a
                         >
                       </li>
                       <li class="nav-item" role="presentation">
@@ -46,7 +46,7 @@
                           role="tab"
                           aria-controls="pills-profile"
                           aria-selected="false"
-                          >Buy Product</a
+                          >Produk Dibeli</a
                         >
                       </li>
                     </ul>

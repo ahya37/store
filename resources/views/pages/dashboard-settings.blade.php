@@ -12,10 +12,12 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Store Settings</h2>
-                <p class="dashboard-subtitle">Make store that profitable</p>
+                <h2 class="dashboard-title">Pengaturan Toko</h2>
+                <p class="dashboard-subtitle">
+                  {{-- Make store that profitable --}}
+                </p>
               </div>
-              <div class="dashboard-content">
+              <div class="dashboard-content mt-4">
                 <div class="row">
                   <div class="col-12">
                     <form action="{{ route('dashboard-settings-redirect','dashboard-settings-store') }}" method="POST" enctype="multipart/form-data">

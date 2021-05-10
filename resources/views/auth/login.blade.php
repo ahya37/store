@@ -4,13 +4,13 @@
 <div class="page-content page-auth">
       <div class="section-store-auth" data-aos="fade-up">
         <div class="container">
-          <div class="row align-items-center row-login">
-            <div class="col-lg-6 text-center">
+          <div class="row align-items-center justify-content-center row-login">
+            {{-- <div class="col-lg-6 text-center">
               <img
                 src="/images/login-placeholder.png"
                 class="w-50 mb-4 mb-lg-none"
               />
-            </div>
+            </div> --}}
             <div class="col-lg-5">
               <h2>
                 Belanja kebutuhan utama, <br />
@@ -19,7 +19,7 @@
               <form method="POST" action="{{ route('login') }}" class="mt-3">
                 @csrf
                 <div class="form-group">
-                  <label>Email Address</label>
+                  <label>Email</label>
                   <input id="email" type="email" class="form-control w-75 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                   @error('email')
                       <span class="invalid-feedback" role="alert">

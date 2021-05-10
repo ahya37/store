@@ -12,8 +12,8 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">My Products</h2>
-                <p class="dashboard-subtitle">Manage it well and get money</p>
+                <h2 class="dashboard-title">Produk Saya</h2>
+                <p class="dashboard-subtitle">Kelola dengan baik dan dapatkan uang</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
@@ -21,7 +21,7 @@
                     <a
                       href="{{ route('dashboard-product-create') }}"
                       class="btn btn-success"
-                      >Add New Products</a
+                      >Tambah Produk Baru</a
                     >
                   </div>
                 </div>
