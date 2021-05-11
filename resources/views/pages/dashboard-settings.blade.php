@@ -39,6 +39,7 @@
                             </div>
                             <div class="col-md-5">
                               <div class="card">
+                                @if (isset($idcard->id))
                                 <div class="card-body">
                                   <label>KTP</label>
                                   <div class="gallery-container">
@@ -51,6 +52,7 @@
                                             </a>
                                     </div>
                                 </div>
+                                @endif
                               </div>
                             </div>
                             

@@ -9,6 +9,7 @@ use App\Category;
 use App\ProductGallery;
 use App\IdCard;
 use Auth;
+use File;
 
 use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Support\Facades\Storage;
@@ -67,6 +68,9 @@ class DashboardProductController extends Controller
     public function deleteGallery(Request $request, $id)
     {
         $item = ProductGallery::findorFail($id);
+
+         // delete file 
+        File::delete(storage_path('app/public/'.$item->photos));
         $item->delete();
 
         return redirect()->route('dashboard-product-details', $item->products_id);

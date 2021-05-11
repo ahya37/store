@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\IdCard;
 use Auth;
+use File;
 
 class DashboardSettingController extends Controller
 {
@@ -47,6 +48,10 @@ class DashboardSettingController extends Controller
     public function deleteIdCard(Request $request, $id)
     {
         $item = IdCard::findorFail($id);
+        // delete file 
+        File::delete(storage_path('app/public/'.$item->file));
+
+        // delete data 
         $item->delete();
 
         return redirect()->route('dashboard-settings-store');
