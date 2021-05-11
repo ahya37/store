@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use App\IdCard;
 use Auth;
 
 class DashboardSettingController extends Controller
 {
     public function store()
     {
-        $user = Auth::user();
-        $categories = Category::all();
-        return view('pages.dashboard-settings', compact('user','categories'));
+        $user   = Auth::user();
+        $idcard = IdCard::with(['user'])->where('users_id', Auth::user()->id)->first();
+        return view('pages.dashboard-settings', compact('user','idcard'));
     }
 
     public function account()
@@ -30,6 +31,25 @@ class DashboardSettingController extends Controller
         $item->update($data);
 
         return redirect()->route($redirect);
+    }
+
+    public function idCardStore(Request $request)
+    {
+        $data = $request->all();
+        $data['file'] = $request->file('file')->store('assets/idCard', 'public');
+        $data['users_id'] = $request->users_id;
+
+        IdCard::create($data);
+
+        return redirect()->route('dashboard-settings-store', $request->products_id);
+    }
+
+    public function deleteIdCard(Request $request, $id)
+    {
+        $item = IdCard::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('dashboard-settings-store');
     }
 
 }

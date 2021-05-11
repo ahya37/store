@@ -67,6 +67,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/account', 'DashboardSettingController@account')
         ->name('dashboard-settings-account');
 
+    Route::post('/dashboard/store/idcard', 'DashboardSettingController@idCardStore')
+        ->name('dashboard-settings-idcard-store');
+    Route::get('/dashboard/store/idcard/delete/{id}', 'DashboardSettingController@deleteIdCard')
+        ->name('dashboard-settings-idcard-delete');
+    
+
     Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')
         ->name('dashboard-settings-redirect');
 

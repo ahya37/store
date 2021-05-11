@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\ProductGallery;
+use App\IdCard;
 use Auth;
 
 use App\Http\Requests\Admin\ProductRequest;
@@ -22,8 +23,10 @@ class DashboardProductController extends Controller
      */
     public function index()
     {
+        $id_card  = IdCard::with(['user'])->where('users_id', Auth::user()->id)->count();
         $products = Product::with(['galleries','category'])->where('users_id', Auth::user()->id)->get();
-        return view('pages.dashboard-products', compact('products'));
+        
+        return view('pages.dashboard-products', compact('products','id_card'));
     }
 
     public function store(ProductRequest $request)
@@ -86,6 +89,5 @@ class DashboardProductController extends Controller
 
         return redirect()->route('dashboard-product');
     }
-
    
 }

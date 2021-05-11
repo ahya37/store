@@ -15,6 +15,20 @@
                 <h2 class="dashboard-title">Produk Saya</h2>
                 <p class="dashboard-subtitle">Kelola dengan baik dan dapatkan uang</p>
               </div>
+
+              @if($id_card == 0)
+              <div class="dashboard-content">
+                <div class="row">
+                  <div class="col-12">
+                    <p>Anda belum upload KTP untuk upload produk dan mulai berjualan</p>
+                    <p>Silahkan Upload KTP di menu Pengaturan Toko</p>
+                     <form action="" method="post" enctype="multipart/form-data" class="dropzone">
+                        @csrf
+                    </form>
+                  </div>
+                </div>
+              </div>
+              @else
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
@@ -45,6 +59,7 @@
                   @endforeach
                 </div>
               </div>
+              @endif
             </div>
           </div>
 @endsection

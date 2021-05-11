@@ -123,15 +123,6 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group" v-if="is_store_open">
-                  <label>Kategori</label>
-                  <select name="categories_id" class="form-control">
-                    @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
-
                 <button
                   type="submit"
                   class="btn btn-success btn-block mt-4"

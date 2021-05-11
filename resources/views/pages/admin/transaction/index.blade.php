@@ -42,6 +42,7 @@
 @endsection
 @push('addon-script')
 <script>
+
     var datatable = $('#crudTable').DataTable({
         processing: true,
         serverSide: true,
@@ -54,7 +55,10 @@
             {data: 'user.name', name:'user.name'},
             {data: 'total_price', name:'total_price'},
             {data: 'transaction_status', name:'transaction_status'},
-            {data: 'created_at', name:'created_at'},
+            {
+                data: 'created_at', 
+                name:'created_at',
+            },
             {
                 data: 'action', 
                 name:'action',

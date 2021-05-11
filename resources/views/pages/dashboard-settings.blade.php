@@ -25,7 +25,7 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                               <div class="form-group">
                                 <label>Nama Toko</label>
                                 <input
@@ -37,20 +37,26 @@
                                 />
                               </div>
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Kategori</label>
-                                 <select name="categories_id" class="form-control">
-                                    <option value="{{ $user->categories_id }}">Tidak diganti</option>
-                                    @foreach ($categories as $category)
-                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                  </select>
+                            <div class="col-md-5">
+                              <div class="card">
+                                <div class="card-body">
+                                  <label>KTP</label>
+                                  <div class="gallery-container">
+                                              <img
+                                                src="{{ Storage::url($idcard->file ?? '') }}"
+                                                class="w-100"
+                                              />
+                                              <a href="{{ route('dashboard-settings-idcard-delete', $idcard->id ?? '') }}" class="delete-gallery">
+                                              <img src="/images/icon-delete.svg" />
+                                            </a>
+                                    </div>
+                                </div>
                               </div>
                             </div>
+                            
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Store</label>
+                                <label>Toko</label>
                                 <p class="text-muted">
                                   Apakah saat ini toko Anda buka?
                                 </p>
@@ -106,6 +112,37 @@
                         </div>
                       </div>
                     </form>
+                    <div class="row">
+                      <div class="col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                        <div class="col-12">
+                                          <form action="{{ route('dashboard-settings-idcard-store') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
+                                            <input
+                                              type="file"
+                                              name="file"
+                                              id="file"
+                                              style="display: none"
+                                              onchange="form.submit()"
+                                            />
+
+                                            @if (!$idcard)
+                                              <button
+                                                type="button"
+                                                class="btn btn-secondary btn-block mt-3"
+                                                onclick="thisFileUpload()"
+                                              >
+                                                Upload KTP
+                                                </button>
+                                            @endif
+                                          </form>
+                                        </div>
+                                  </div>
+                                </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -113,3 +150,10 @@
           </div>
 
 @endsection
+@push('addon-script')
+<script>
+      function thisFileUpload() {
+        document.getElementById("file").click();
+      }
+</script>
+@endpush
