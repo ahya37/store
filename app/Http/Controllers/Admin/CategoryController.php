@@ -78,6 +78,7 @@ class CategoryController extends Controller
 
         $data['slug']  = Str::slug($request->name);
         $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+        $data['top_categories_id'] = $request->top_categories_id;
 
         Category::create($data);
 
@@ -103,9 +104,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $topcategories =  TopCategory::all();
         $item = Category::findOrFail($id);
 
-        return view('pages.admin.category.edit', ['item' => $item]);
+        return view('pages.admin.category.edit', ['item' => $item,'topcategories' => $topcategories]);
     }
 
     /**

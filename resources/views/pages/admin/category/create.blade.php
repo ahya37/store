@@ -33,7 +33,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Top Kategori</label>
-                                                <select name="categories_id" class="form-control">
+                                                <select name="top_categories_id" class="form-control">
                                                     @foreach ($topcategories as $topcategory)
                                                         <option value="{{ $topcategory->id }}">{{ $topcategory->name }}</option>
                                                     @endforeach

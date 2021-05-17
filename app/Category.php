@@ -10,8 +10,13 @@ class Category extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name','photo','slug'
+        'name','photo','slug','top_categories_id'
     ];
 
     protected $hidden = [];
+
+    public function topCategory()
+    {
+        return $this->belongsTo(TopCategory::class,'top_categories_id','id');
+    }
 }

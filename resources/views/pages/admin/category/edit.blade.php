@@ -31,6 +31,17 @@
                                     @csrf
     
                                     <div class="row">
+                                         <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Top Kategori</label>
+                                                <select name="top_categories_id" class="form-control">
+                                                    <option value="{{ $item->top_categories_id }}">{{ $item->topCategory->name }}</option>
+                                                    @foreach ($topcategories as $topcategory)
+                                                        <option value="{{ $topcategory->id }}">{{ $topcategory->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Nama Kategori</label>

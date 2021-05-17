@@ -25,7 +25,8 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'photo' => 'image'
+            'photo' => 'image',
+            'top_categories_id' => 'required|exists:top_categories,id',
         ];
     }
 }
