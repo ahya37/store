@@ -40,8 +40,13 @@
     </div>
 </div>
 @endsection
+
 @push('addon-script')
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.19/dataRender/datetime.js"></script>
 <script>
+ 
+var editor;
 
     var datatable = $('#crudTable').DataTable({
         processing: true,
@@ -66,7 +71,12 @@
                 searchable: false,
                 width: '15%'
             },
-        ]
+        ],
+        columnDefs:[{
+            targets:4, render:function(data){
+                return moment(data).format('DD/MM/YYYY, hh:mm:ss');
+            }
+        }]
     });
 </script>    
 @endpush
