@@ -27,7 +27,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard-product-store') }}" method="POST" enctype="multipart/form-data" id="el_categories">
                       @csrf
                       <input type="hidden" value="{{ Auth::user()->id }}" name="users_id">
                       <div class="card">
@@ -59,12 +59,18 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Kategori</label>
-                                <select name="categories_id" class="form-control">
-                                    @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                  </select>
+                                <select name="top_categories_id" class="form-control" id="top_categories_id" v-model="top_categories_id" v-if="top_categories">
+                                  <option v-for="top_category in top_categories" :value="top_category.id">@{{top_category.name}}</option>
+                                </select>
                               </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="categories_id">Sub Kategori</label>
+                                  <select name="categories_id" class="form-control" id="categories_id" v-model="categories_id" v-if="categories">
+                                    <option v-for="category in categories" :value="category.id">@{{ category.name }}</option>
+                                  </select>
+                                </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
@@ -109,7 +115,46 @@
 
 @push('addon-script')
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="/vendor/vue/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    CKEDITOR.replace("editor");
-</script>   
+    var locations = new Vue({
+        el: "#el_categories",
+        mounted() {
+            AOS.init();
+            this.getTopCategoriesData();
+        },
+        data: {
+            top_categories: null,
+            categories: null,
+            top_categories_id: null,
+            categories_id: null,
+        },
+        methods:{
+            getTopCategoriesData(){
+                var self = this;
+                axios.get('{{ route('api-topcategories') }}')
+                .then(function(resoponse){
+                    self.top_categories = resoponse.data
+                })
+            },
+            getCategoriesData(){
+                var self = this;
+                axios.get('{{ url('api/categories') }}/' + self.top_categories_id)
+                .then(function(response){
+                    self.categories = response.data
+                })
+            },
+        },
+        watch:{
+            top_categories_id: function(val, oldval){
+                this.categories_id = null,
+                this.getCategoriesData();
+            },
+        }
+    });
+</script>
+<script>
+    CKEDITOR.replace('editor');
+</script> 
 @endpush

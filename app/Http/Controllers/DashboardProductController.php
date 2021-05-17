@@ -25,7 +25,7 @@ class DashboardProductController extends Controller
     public function index()
     {
         $id_card  = IdCard::where('users_id', Auth::user()->id)->first();
-        $products = Product::with(['galleries','category'])->where('users_id', Auth::user()->id)->get();
+        $products = Product::with(['galleries','category'])->where('users_id', Auth::user()->id)->orderBy('id','DESC')->get();
         
         return view('pages.dashboard-products', compact('products','id_card'));
     }

@@ -21,3 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('register/check', 'Auth\RegisterController@check')->name('api-register-check');
 Route::get('provinces', 'API\LocationController@provinces')->name('api-provinces');
 Route::get('regencies/{province_id}', 'API\LocationController@regencies')->name('api-regencies');
+
+Route::get('topcategories', 'API\CategoryController@topCategories')->name('api-topcategories');
+Route::get('categories/{top_categories_id}', 'API\CategoryController@categories')->name('api-categories');
+
+

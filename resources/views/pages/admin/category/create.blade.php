@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Top Kategori</label>
+                                                <label>Kategori</label>
                                                 <select name="top_categories_id" class="form-control">
                                                     @foreach ($topcategories as $topcategory)
                                                         <option value="{{ $topcategory->id }}">{{ $topcategory->name }}</option>
@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Nama Kategori</label>
+                                                <label>Nama Sub Kategori</label>
                                                 <input type="text" name="name" class="form-control" required>
                                             </div>
                                         </div>
