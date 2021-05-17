@@ -39,6 +39,7 @@ class DashboardSettingController extends Controller
         $data = $request->all();
         $data['file'] = $request->file('file')->store('assets/idCard', 'public');
         $data['users_id'] = $request->users_id;
+        $data['status'] = 0;
 
         IdCard::create($data);
 

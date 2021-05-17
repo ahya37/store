@@ -41,7 +41,7 @@
                               <div class="card">
                                 @if (isset($idcard->id))
                                 <div class="card-body">
-                                  <label>KTP</label>
+                                  <label>KTP - ({!! $idcard->status_label !!})</label>
                                   <div class="gallery-container">
                                               <img
                                                 src="{{ Storage::url($idcard->file ?? '') }}"

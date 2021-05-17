@@ -16,12 +16,23 @@
                 <p class="dashboard-subtitle">Kelola dengan baik dan dapatkan uang</p>
               </div>
 
-              @if($id_card == 0)
+              @if($id_card == NULL)
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
                     <p>Anda belum upload KTP untuk upload produk dan mulai berjualan</p>
                     <p>Silahkan Upload KTP di menu Pengaturan Toko</p>
+                     <form action="" method="post" enctype="multipart/form-data" class="dropzone">
+                        @csrf
+                    </form>
+                  </div>
+                </div>
+              </div>
+              @elseif($id_card->status == 0)
+              <div class="dashboard-content">
+                <div class="row">
+                  <div class="col-12">
+                    <p>KTP telah di upload, silahkan menunggu persetujuan Admin Percikanshop</p>
                      <form action="" method="post" enctype="multipart/form-data" class="dropzone">
                         @csrf
                     </form>
