@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
 use Auth;
+use App\Providers\GlobalFunction;
 
 class DetailController extends Controller
 {
@@ -17,7 +18,9 @@ class DetailController extends Controller
     public function index(Request $request, $id)
     {
         $product = Product::with(['galleries','user'])->where('slug', $id)->firstOrFail();
-        return view('pages.detail', compact('product'));
+
+        $globalFunction = app('GlobalFunction');
+        return view('pages.detail', compact('product','globalFunction'));
     }
 
     public function add(Request $request, $id)

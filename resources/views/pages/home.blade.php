@@ -113,7 +113,7 @@
                     ></div>
                   </div>
                   <div class="products-text">{{ $product->name }}</div>
-                  <div class="products-price">{{'Rp. '.number_format($product->price)}}</div>
+                  <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
                   <div class="products-text">
                     <a 
                     {{-- href="{{ route('detail', $product->slug) }}" --}}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\Providers\GlobalFunction;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,8 @@ class HomeController extends Controller
     {
         $categories = Category::take(6)->get();
         $products   = Product::with(['galleries'])->inRandomOrder()->take(20)->get();
-        return view('pages.home', compact('categories','products'));
+
+        $globalFunction = app('GlobalFunction');
+        return view('pages.home', compact('categories','products','globalFunction'));
     }
 }
