@@ -46,6 +46,14 @@
             >
               Galleri
             </a>
+
+            {{-- Top Kategori --}}
+            <a
+              href="{{ route('topcategory.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/topcategory*')) ? 'active' : '' }}"
+            >
+              Top Kategori
+            </a>
             <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"

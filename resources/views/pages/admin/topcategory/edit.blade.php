@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Category
+   Top Category Edit
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-                <h2 class="dashboard-title">Category</h2>
-                <p class="dashboard-subtitle">Create New Category</p>
+                <h2 class="dashboard-title">Top Category</h2>
+                <p class="dashboard-subtitle">Edit Top Category</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
@@ -26,30 +26,21 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('topcategory.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                    @method('PUT')
                                     @csrf
     
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Top Kategori</label>
-                                                <select name="categories_id" class="form-control">
-                                                    @foreach ($topcategories as $topcategory)
-                                                        <option value="{{ $topcategory->id }}">{{ $topcategory->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
                                                 <label>Nama Kategori</label>
-                                                <input type="text" name="name" class="form-control" required>
+                                                <input type="text" name="name" class="form-control" value="{{ $item->name }}"  required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Foto</label>
-                                                <input type="file" name="photo" class="form-control" required>
+                                                <input type="file" name="photo" class="form-control">
                                             </div>
                                         </div>
                                     </div>

@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
+
 use App\TopCategory;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use File;
+use App\Http\Requests\Admin\TopCategoryRequest;
 
-use App\Http\Requests\Admin\CategoryRequest;
-
-class CategoryController extends Controller
+class TopCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         if (request()->ajax()) 
         {
-            $query = Category::query();
+            $query = TopCategory::query();
 
             return Datatables::of($query)
                 ->addColumn('action', function($item){
@@ -32,10 +32,10 @@ class CategoryController extends Controller
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
                                 <div class="dropdown-menu">
-                                     <a class="dropdown-item" href="' .route('category.edit', $item->id). '">
+                                     <a class="dropdown-item" href="' .route('topcategory.edit', $item->id). '">
                                         Edit
                                      </a>
-                                     <form action="'. route('category.destroy', $item->id) .'" method="POST">
+                                     <form action="'. route('topcategory.destroy', $item->id) .'" method="POST">
                                          '. method_field('delete') . csrf_field() .'
                                          <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -52,7 +52,7 @@ class CategoryController extends Controller
                 ->rawColumns(['action','photo'])
                 ->make();
         }
-        return view('pages.admin.category.index');
+        return view('pages.admin.topcategory.index');
     }
 
     /**
@@ -62,8 +62,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $topcategories =  TopCategory::all();
-        return view('pages.admin.category.create', compact('topcategories'));
+        return view('pages.admin.topcategory.create');
     }
 
     /**
@@ -72,16 +71,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(TopCategoryRequest $request)
     {
         $data = $request->all();
 
         $data['slug']  = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+        $data['photo'] = $request->file('photo')->store('assets/topcategory', 'public');
 
-        Category::create($data);
+        TopCategory::create($data);
 
-        return redirect()->route('category.index');
+        return redirect()->route('topcategory.index')->with(['success' => 'Top Kategori telah ditambahkan']);
     }
 
     /**
@@ -92,7 +91,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -103,9 +102,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $item = Category::findOrFail($id);
+        $item = TopCategory::findOrFail($id);
 
-        return view('pages.admin.category.edit', ['item' => $item]);
+        return view('pages.admin.topcategory.edit', ['item' => $item]);
     }
 
     /**
@@ -115,21 +114,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(TopCategoryRequest $request, $id)
     {
         $data = $request->all();
 
         $data['slug']  = Str::slug($request->name);
+
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+            $data['photo'] = $request->file('photo')->store('assets/topcategory', 'public');
         }
 
-        $item = Category::findOrFail($id);
+        $item = TopCategory::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('category.index');
-
+        return redirect()->route('topcategory.index');
     }
 
     /**
@@ -140,9 +139,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $item = Category::findOrFail($id);
+        $item = TopCategory::findOrFail($id);        
         $item->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('topcategory.index');
     }
 }
