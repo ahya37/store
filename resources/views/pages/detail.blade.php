@@ -37,8 +37,8 @@
                   :key="photos[activePhoto].id"
                   class="w-100 main-image"
                 />
-            </div>
               </transition>
+            </div>
               <div class="col-lg-2">
                 <div class="row">
                   <div
@@ -71,6 +71,7 @@
                 <div class="owner">{{ $product->user->store_name }}</div>
                 <div class="price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
               </div>
+              
               <div class="col-lg-2" data-aos="zoom-in">
                 @auth
                   <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
@@ -106,45 +107,6 @@
             </div>
           </div>
         </section>
-        {{-- <section class="store-review">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-8 mt-3 mb-3">
-                <h5>Customer Review (3)</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-8">
-                <ul class="list-unstyled">
-                  <li class="media">
-                    <img src="/images/icon-testimonial-1.png" class="mr-3 rounded-circle" />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Hazza Risky</h5>
-                      I thought it was not good for living room. I really happy
-                      to decided buy this product last week now feels like homey.
-                    </div>
-                  </li>
-                  <li class="media">
-                    <img src="/images/icon-testimonial-2.png" class="mr-3 rounded-circle" />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Hazza Risky</h5>
-                      I thought it was not good for living room. I really happy
-                      to decided buy this product last week now feels like homey.
-                    </div>
-                  </li>
-                  <li class="media">
-                    <img src="/images/icon-testimonial-3.png" class="mr-3 rounded-circle" />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Hazza Risky</h5>
-                      I thought it was not good for living room. I really happy
-                      to decided buy this product last week now feels like homey.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section> --}}
       </div>
     </div>
 @endsection

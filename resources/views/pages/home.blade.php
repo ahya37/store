@@ -116,11 +116,19 @@
                   <small class="products-stock">Stok: {{ $product->stock }}</small>
                   <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
                   <div class="products-text">
-                    <a 
+                    {{-- <a 
+                    href="{{ route('detail', $product->slug) }}"
+                    href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
+
+                    class="btn btn-success px-4 text-white btn-block">
+                      Beli
+                  </a> --}}
+                  <a 
                     {{-- href="{{ route('detail', $product->slug) }}" --}}
                     href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
 
-                    class="btn btn-success px-4 text-white btn-block mb-3">
+                    class="btn btn-success px-4 text-white btn-block mb-4">
+                    <img src="/images/whatsapp.svg" width="20"/>
                       Beli
                   </a>
                   </div>
