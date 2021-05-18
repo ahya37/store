@@ -88,6 +88,8 @@ Route::prefix('admin')
             Route::resource('product','ProductController');
             Route::resource('product-gallery','ProductGalleryController');
             Route::resource('transactions', 'TransactionController');
+            Route::resource('submissionidcard', 'SubmissionIdcardController');
+
 
         });
 

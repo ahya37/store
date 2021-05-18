@@ -12,8 +12,8 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">My Account</h2>
-                <p class="dashboard-subtitle">Update your current profile</p>
+                <h2 class="dashboard-title">Akun Saya</h2>
+                <p class="dashboard-subtitle">Update akun</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
@@ -25,7 +25,7 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="address_one">Your Name</label>
+                                <label for="address_one">Nama</label>
                                 <input
                                   type="text"
                                   class="form-control"
@@ -48,61 +48,25 @@
                               </div>
                             </div>
                             <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="address_one">Address 1</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="address_one"
-                                  name="address_one"
-                                  value="{{ $user->address_one }}"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="address_two">Address 2</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="address_two"
-                                  name="address_two"
-                                  value="{{ $user->address_two }}"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-4">
                                 <div class="form-group">
-                                <label for="provinces_id">Province</label>
+                                <label for="provinces_id">Provinsi</label>
                                 <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                                     <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                 </select>
                                 <select v-else class="form-control"></select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                <label for="regencies_id">City</label>
+                                <label for="regencies_id">Kab / Kota</label>
                                 <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                                     <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                 </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <label for="zip_code">Postal Code</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="zip_code"
-                                  name="zip_code"
-                                  value="{{ $user->zip_code }}"
-                                />
-                              </div>
-                            </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="country">Country</label>
+                                <label for="country">Negara</label>
                                 <input
                                   type="text"
                                   class="form-control"
@@ -114,7 +78,32 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="phone_number">Mobile</label>
+                                <label for="zip_code">Kode Pos</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="zip_code"
+                                  name="zip_code"
+                                  value="{{ $user->zip_code }}"
+                                />
+                              </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="address_one">Alamat Lengkap</label>
+                                <textarea
+                                  class="form-control"
+                                  id="address_one"
+                                  name="address_one" 
+                                >
+                                {{ $user->address_one }}
+                                </textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="phone_number">No. Hp</label>
                                 <input
                                   type="text"
                                   class="form-control"

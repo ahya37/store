@@ -8,6 +8,7 @@ use App\Category;
 use App\IdCard;
 use Auth;
 use File;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardSettingController extends Controller
 {

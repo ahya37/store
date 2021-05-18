@@ -22,7 +22,7 @@
   <body>
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
-        <!-- Sidebae -->
+        <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
             <img src="/images/admin.png" class="my-4" style="width: 150px;" />
@@ -71,6 +71,12 @@
               class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }}"
             >
               Pengguna
+            </a>
+            <a
+              href="{{ route('submissionidcard.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/submissionidcard*')) ? 'active' : '' }}"
+            >
+              Pengajuan
             </a>
             <a
               href="#"

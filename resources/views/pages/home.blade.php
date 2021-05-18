@@ -113,6 +113,7 @@
                     ></div>
                   </div>
                   <div class="products-text">{{ $product->name }}</div>
+                  <small class="products-stock">Stok: {{ $product->stock }}</small>
                   <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
                   <div class="products-text">
                     <a 

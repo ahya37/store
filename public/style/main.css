@@ -11347,6 +11347,13 @@ footer p {
   color: #ff7158;
 }
 
+.component-products .products-stock {
+  font-weight: normal;
+  font-size: 12px;
+  color: #0c0d36;
+  margin-top: 12px;
+}
+
 .store-breadcrumbs .breadcrumb {
   background: transparent;
   padding: 0;

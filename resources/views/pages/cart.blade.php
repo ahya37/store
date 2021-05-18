@@ -19,7 +19,7 @@
                     <li class="breadcrumb-item">
                         <a href="/index.html">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Cart</li>
+                    <li class="breadcrumb-item active">Keranjang</li>
                     </ol>
                 </nav>
                 </div>
@@ -33,9 +33,9 @@
                 <div class="col-12 table-responsive">
                 <table class="table table-borderless table-cart">
                     <thead>
-                    <td>Image</td>
-                    <td>Name &amp; Seller</td>
-                    <td>Price</td>
+                    <td>Gambar</td>
+                    <td>Produk &amp; Penjual</td>
+                    <td>Harga</td>
                     <td>Menu</td>
                     </thead>
                     <tbody>
@@ -62,7 +62,7 @@
                                 <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-remove-cart">Remove</button>
+                                    <button type="submit" class="btn btn-remove-cart">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -86,48 +86,24 @@
                 <div class="row mb-2" data-aos="fade-up" data-aos-delay="200" id="locations">
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="address_one">Address 1</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="address_one"
-                        name="address_one"
-                        value="Setra Duta Cemara"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="address_two">Address 2</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="address_two"
-                        name="address_two"
-                        value="Blok B2 No. 34"
-                    />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                    <label for="provinces_id">Province</label>
+                    <label for="provinces_id">Provinsi</label>
                     <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                         <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                     </select>
                     <select v-else class="form-control"></select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
-                    <label for="regencies_id">City</label>
+                    <label for="regencies_id">Kab / Kota</label>
                     <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                         <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                     </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
-                    <label for="zip_code">Postal Code</label>
+                    <label for="zip_code">Kode Pos</label>
                     <input
                         type="text"
                         class="form-control"
@@ -139,7 +115,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country">Negara</label>
                     <input
                         type="text"
                         class="form-control"
@@ -151,7 +127,19 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="phone_number">Mobile</label>
+                    <label for="address_one">Alamat Lengkap</label>
+                    <textarea
+                        class="form-control"
+                        id="address_one"
+                        name="address_one"
+                        value="Setra Duta Cemara"
+                    >
+                    </textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="phone_number">No. Hp</label>
                     <input
                         type="text"
                         class="form-control"
@@ -192,7 +180,7 @@
                     type="submit"
                     class="btn btn-success mt-4 px-4 btn-block"
                     >
-                    Checkout Now
+                    Checkout
                     </button>
                 </div>
                 </div>
