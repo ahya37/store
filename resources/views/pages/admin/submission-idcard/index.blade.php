@@ -9,8 +9,8 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-                <h2 class="dashboard-title">Submission</h2>
-                <p class="dashboard-subtitle">List Of Submission Idcard</p>
+                <h2 class="dashboard-title">Pengajuan</h2>
+                <p class="dashboard-subtitle">Daftar Pengajuan KTP</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
