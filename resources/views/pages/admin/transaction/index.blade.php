@@ -72,11 +72,13 @@ var editor;
                 width: '15%'
             },
         ],
-        columnDefs:[{
+        columnDefs:[
+            {
             targets:4, render:function(data){
-                return moment(data).format('DD/MM/YYYY, hh:mm:ss');
+                    return moment(data).format('DD/MM/YYYY, hh:mm:ss');
+                }
             }
-        }]
+            ]
     });
 </script>    
 @endpush

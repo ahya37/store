@@ -68,6 +68,24 @@
                                                 <input type="number" name="price" class="form-control" required>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Bagi Hasil / Profit Sharing</label>
+                                                <input type="number" name="profit_sharing" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Stok</label>
+                                                <input type="number" name="stock" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Berat (Gram)</label>
+                                                <input type="number" name="weight" class="form-control" required>
+                                            </div>
+                                        </div>
                                          <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Deskripsi Produk</label>
