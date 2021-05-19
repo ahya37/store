@@ -59,7 +59,7 @@
                       >
                       @foreach ($sellTransactions as $sellTransaction)
                       <a
-                        href="{{ route('dashboard-transactions-details', $sellTransaction->id) }}"
+                        href="{{ route('dashboard-transactions-details-sell', $sellTransaction->id) }}"
                         class="card card-list d-block"
                       >
                         <div class="card-body">
@@ -70,7 +70,11 @@
                                 class="w-50"
                               />
                             </div>
-                            <div class="col-md-4">{{ $sellTransaction->product->name }}</div>
+                            <div class="col-md-4">{{ $sellTransaction->product->name }}
+                              <small>
+                                x ({{ $sellTransaction->qty }})
+                              </small>
+                            </div>
                             <div class="col-md-3">{{ $sellTransaction->product->user->store_name }}</div>
                             <div class="col-md-3">{{ $sellTransaction->created_at }}</div>
                             <div class="col-md-1 d-none d-md-block">
@@ -89,7 +93,7 @@
                       >
                        @foreach ($buyTransactions as $buyTransaction)
                       <a
-                        href="{{ route('dashboard-transactions-details', $buyTransaction->id) }}"
+                        href="{{ route('dashboard-transactions-details-buy', $buyTransaction->id) }}"
                         class="card card-list d-block"
                       >
                         <div class="card-body">
@@ -100,7 +104,11 @@
                                 class="w-50"
                               />
                             </div>
-                            <div class="col-md-4">{{ $buyTransaction->product->name }}</div>
+                            <div class="col-md-4">{{ $buyTransaction->product->name }} 
+                              <small>
+                                x ({{ $buyTransaction->qty }})
+                              </small>
+                            </div>
                             <div class="col-md-3">{{ $buyTransaction->product->user->store_name }}</div>
                             <div class="col-md-3">{{ $buyTransaction->created_at }}</div>
                             <div class="col-md-1 d-none d-md-block">

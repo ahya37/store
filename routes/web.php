@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
+    Route::post('/cart/update/min/{id}', 'CartController@updateMinus')->name('cart-update-min');
 
     Route::post('/checkout', 'CheckoutController@process')->name('checkout');
 
@@ -57,6 +58,12 @@ Route::group(['middleware' => ['auth']], function(){
         ->name('dashboard-transactions');
     Route::get('/dashboard/transactions/{id}', 'DashboardTransactionController@details')
         ->name('dashboard-transactions-details');
+
+    Route::get('/dashboard/transactions/buy/{id}', 'DashboardTransactionController@detailsBuy')
+        ->name('dashboard-transactions-details-buy');
+
+    Route::get('/dashboard/transactions/sell/{id}', 'DashboardTransactionController@detailsSell')
+        ->name('dashboard-transactions-details-sell');
 
     Route::post('/dashboard/transactions/{id}', 'DashboardTransactionController@update')
         ->name('dashboard-transactions-update');

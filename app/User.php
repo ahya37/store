@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Province;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,5 +38,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function provinces()
+    {
+        return $this->hasOne(Province::class,'id','provinces_id');
+    }
+
+    public function regencies()
+    {
+        return $this->hasOne(Province::class,'id','regencies_id');
+    }
 
 }

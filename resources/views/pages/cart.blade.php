@@ -29,6 +29,13 @@
 
         <section class="store-cart">
             <div class="container">
+                <div class="col-12">
+                    @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('success') }}</p>
+                            </div>
+                    @endif
+                </div>
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-12 table-responsive">
                 <table class="table table-borderless table-cart">
@@ -36,6 +43,7 @@
                     <td>Gambar</td>
                     <td>Produk &amp; Penjual</td>
                     <td>Harga</td>
+                    <td>Qty</td>
                     <td>Menu</td>
                     </thead>
                     <tbody>
@@ -55,19 +63,39 @@
                             <div class="product-subtitle">{{ $cart->product->user->store_name }}</div>
                             </td>
                             <td style="width: 35%">
-                            <div class="product-title">{{ 'Rp. '. number_format($cart->product->price) }}</div>
+                            <div class="product-title">{{ 'Rp. '. $globalFunction->formatRupiah($cart->product->price) }}</div>
                             {{-- <div class="product-subtitle">USD</div> --}}
                             
+                            </td>
+                            <td style="width: 20%">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <form action="{{ route('cart-update-min', $cart->id) }}" method="POST">
+                                                @csrf
+                                                <button name="button" value="minus" onclick="var result = document.getElementById('sst{{ $cart->product->id }}').submit(); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                    class="btn btn-sm btn-secondary">
+                                                    -
+                                                </button>
+                                    </div>
+                                            <input type="text" min="0" value="{{ $cart->qty }}" readonly name="qty" id="sst{{ $cart->product->id }}" class="form-control form-control-sm text-center">
+                                    <div class="input-group-append">
+                                            <button name="button" value="plus" onclick="var result = document.getElementById('sst{{ $cart->product->id }}').submit(); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                class="btn btn-sm btn-secondary">
+                                                +
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                             <td style="width: 20%">
                                 <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-remove-cart">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-remove-cart">Hapus</button>
                                 </form>
                             </td>
                         </tr>
-                        @php $totalPrice += $cart->product->price @endphp
+                        @php $totalPrice += $cart->product->price * $cart->qty @endphp
                         @endforeach
                     </tbody>
                 </table>
@@ -110,7 +138,7 @@
                         class="form-control"
                         id="zip_code"
                         name="zip_code"
-                        value="40512"
+                        value="{{ $cart->user->zip_code ?? '' }}"
                     />
                     </div>
                 </div>
@@ -133,8 +161,8 @@
                         class="form-control"
                         id="address_one"
                         name="address_one"
-                        value="Setra Duta Cemara"
                     >
+                    {{ $cart->user->address_one ?? '' }}
                     </textarea>
                     </div>
                 </div>
@@ -146,7 +174,7 @@
                         class="form-control"
                         id="phone_number"
                         name="phone_number"
-                        value="+628 2020 11111"
+                        value="{{ $cart->user->phone_number ?? ''}}"
                     />
                     </div>
                 </div>
@@ -156,25 +184,25 @@
                     <hr />
                 </div>
                 <div class="col-12">
-                    <h2 class="mb-1">Payment Informations</h2>
+                    <h2 class="mb-1">Informasi Pembayaran</h2>
                 </div>
                 </div>
                 <div class="row" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-4 col-md-2">
-                    <div class="product-title">$0</div>
-                    <div class="product-subtitle">Country Tax</div>
+                    {{-- <div class="product-title">$0</div>
+                    <div class="product-subtitle">Country Tax</div> --}}
                 </div>
                 <div class="col-4 col-md-3">
-                    <div class="product-title">$0</div>
-                    <div class="product-subtitle">Product Insurance</div>
-                </div>
-                <div class="col-4 col-md-2">
-                    <div class="product-title">$0</div>
-                    <div class="product-subtitle">Ship to Jakarta</div>
-                </div>
-                <div class="col-4 col-md-2">
-                    <div class="product-title text-success">{{ number_format($totalPrice) }}</div>
+                    <div class="product-title">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
                     <div class="product-subtitle">Total</div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="product-title">Rp 15.000</div>
+                    <div class="product-subtitle">Ongkir</div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="product-title text-success">Rp {{ $globalFunction->formatRupiah($totalPrice + 15000) }}</div>
+                    <div class="product-subtitle">Total Pembayaran</div>
                 </div>
                 <div class="col-8 col-md-3">
                     <button

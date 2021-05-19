@@ -33,6 +33,22 @@ class DashboardTransactionController extends Controller
         return view('pages.dashboard-transactions-details', compact('transaction'));
     }
 
+    public function detailsBuy(Request $request, $id)
+    {
+        $transaction = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->findOrFail($id);
+
+        return view('pages.dashboard-transactions-details-buy', compact('transaction'));
+    }
+
+    public function detailsSell(Request $request, $id)
+    {
+        $transaction = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->findOrFail($id);
+
+        return view('pages.dashboard-transactions-details-sell', compact('transaction'));
+    }
+
     public function update(Request $request, $id)
     {
         $data = $request->all();

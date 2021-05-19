@@ -13,7 +13,7 @@
             <div class="container-fluid">
               <div class="dashboard-heading">
                 <h2 class="dashboard-title">#{{ $transaction->code }}</h2>
-                <p class="dashboard-subtitle">Transaksi / Detail </p>
+                <p class="dashboard-subtitle">Transaksi / Detail Dibeli</p>
               </div>
               <div class="dashboard-content" id="transactionDetails">
                 <div class="row">
@@ -107,39 +107,13 @@
                                   </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                </div>
-                                <div class="col-12 col-md-3">
                                   <div class="product-title">Status Pengiriman</div>
-                                  <select
-                                    name="shipping_status"
-                                    id="status"
-                                    class="form-control"
-                                    v-model="status"
-                                  >
-                                    <option value="PENDING">Pending</option>
-                                    <option value="SHIPPING">Shipping</option>
-                                    <option value="SUCCESS">Success</option>
-                                  </select>
+                                  <div class="product-subtitle">
+                                    {{ $transaction->shipping_status }} - {{ $transaction->resi }}
+                                  </div>
                                 </div>
-                                <template v-if="status == 'SHIPPING'">
-                                  <div class="col-md-3">
-                                    <div class="prodcut-title">Input Resi</div>
-                                    <input
-                                      type="text"
-                                      name="resi"
-                                      class="form-control"
-                                      v-model="resi"
-                                    />
-                                  </div>
-                                  <div class="col-md-2">
-                                    <button
-                                      type="submit"
-                                      class="btn btn-success btn-block mt-4"
-                                    >
-                                      Update Resi
-                                    </button>
-                                  </div>
-                                </template>
+                                <div class="col-12 col-md-6">
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -164,14 +138,5 @@
 @endsection
 
 @push('addon-script')
-<script src="/vendor/vue/vue.js"></script>
-    <script>
-      var transactionDetails = new Vue({
-        el: "#transactionDetails",
-        data: {
-          status: "{{ $transaction->shipping_status }}",
-          resi: "{{ $transaction->resi }}",
-        },
-      });
-</script>
+
 @endpush

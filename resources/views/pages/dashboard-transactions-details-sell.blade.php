@@ -13,7 +13,7 @@
             <div class="container-fluid">
               <div class="dashboard-heading">
                 <h2 class="dashboard-title">#{{ $transaction->code }}</h2>
-                <p class="dashboard-subtitle">Transaksi / Detail </p>
+                <p class="dashboard-subtitle">Transaksi / Detail Produk Dijual</p>
               </div>
               <div class="dashboard-content" id="transactionDetails">
                 <div class="row">
@@ -56,7 +56,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="product-title">Total Jumlah</div>
                                 <div class="product-subtitle">
-                                  {{ number_format($transaction->transaction->total_p) }}
+                                  {{ number_format($transaction->price * $transaction->qty ) }}
                                 </div>
                               </div>
                               <div class="col-12 col-md-6">
