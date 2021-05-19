@@ -193,15 +193,15 @@
                     <div class="product-subtitle">Country Tax</div> --}}
                 </div>
                 <div class="col-4 col-md-3">
-                    <div class="product-title">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
-                    <div class="product-subtitle">Total</div>
+                    {{-- <div class="product-title">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
+                    <div class="product-subtitle">Total</div> --}}
                 </div>
                 <div class="col-4 col-md-2">
-                    <div class="product-title">Rp 15.000</div>
-                    <div class="product-subtitle">Ongkir</div>
+                    {{-- <div class="product-title">Rp 15.000</div>
+                    <div class="product-subtitle">Ongkir</div> --}}
                 </div>
                 <div class="col-4 col-md-2">
-                    <div class="product-title text-success">Rp {{ $globalFunction->formatRupiah($totalPrice + 15000) }}</div>
+                    <div class="product-title text-success">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
                     <div class="product-subtitle">Total Pembayaran</div>
                 </div>
                 <div class="col-8 col-md-3">
