@@ -25,13 +25,29 @@ class DetailController extends Controller
 
     public function add(Request $request, $id)
     {
-        $data = [
-            'products_id' => $id,
-            'users_id' => Auth::user()->id
-        ];
+        // get cart berdasarkan login nya
+        $cart = Cart::select('id','products_id','qty')
+                ->where([
+                    ['users_id','=', Auth::user()->id],
+                    ['products_id','=', $id]
+                ])->first();
+        
+        // cek data products_id, apakah sudah ada berdasarkan login nya
+        if ($cart == NULL) {
+            // jika berbeda / belum ada, buat data cart baru
+            $data = [
+                'products_id' => $id,
+                'users_id' => Auth::user()->id
+            ];
+            
+            Cart::create($data);
+            
+        }else{
+            // jika product_id nya sama / sudah ada, maka update saja qty cart nya (ditambahkan)
+            $carts = Cart::where('id', $cart->id)->first();
+            $carts->update(['qty' => $carts->qty + 1]);
+        }
 
-        Cart::create($data);
-
-        return redirect()->route('cart');
+        return redirect()->route('cart')->with(['success' => 'Produk ditambahkan ke keranjang']);
     }
 }

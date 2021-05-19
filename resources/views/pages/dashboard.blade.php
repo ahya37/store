@@ -32,32 +32,53 @@
                   </div>
                 </div>
                 <div class="row mt-3">
-                  <div class="col-12 mt-2">
-                    <h5 class="mb-3">Transaksi Terkini</h5>
-                    @foreach ($transaction_data as $transaction)
-                      <a
-                        href="{{ route('dashboard-transactions-details', $transaction->id) }}"
-                        class="card card-list d-block"
-                      >
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-1">
-                              <img
-                                src="{{ Storage::url($transaction->product->galleries->first()->photos ?? '') }}"
-                                class="w-75"
-                              />
-                            </div>
-                            <div class="col-md-4">{{ $transaction->product->name ?? '' }}</div>
-                            <div class="col-md-3">{{ $transaction->transaction->user->name ?? '' }}</div>
-                            <div class="col-md-3">{{ $transaction->created_at ?? '' }}</div>
-                            <div class="col-md-1 d-none d-md-block">
-                              <img src="/images/dashboard-arrow-right.svg" />
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    @endforeach
+                  <div class="col-md-4">
+                    <h5>Pesanan Saya</h5>
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card mb-2">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <div class="dashboard-card-title">
+                            <img src="/images/wallet.svg" alt="" />
+                            <small class="badge badge-danger">3</small>
+                          </div>
+                          <div class="dashboard-card-subtitle">Belum Bayar</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card mb-2">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <div class="dashboard-card-title">
+                            <a href="">
+                              <img src="/images/van.svg" alt="" />
+                              <small class="badge badge-warning">3</small>
+                            </a>
+                          </div>
+                          <div class="dashboard-card-subtitle">Dikirim</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card mb-2">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <div class="dashboard-card-title">
+                            <img src="/images/checklist.svg" alt="" />
+                            <small class="badge badge-success">3</small>
+                          </div>
+                          <div class="dashboard-card-subtitle">Selesai</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
               </div>
     </div>

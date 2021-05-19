@@ -55,37 +55,38 @@ class CheckoutController extends Controller
         Cart::where('users_id', Auth::user()->id)->delete();
 
         // configurasi midtrans
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction   = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
+        // Config::$serverKey = config('services.midtrans.serverKey');
+        // Config::$isProduction   = config('services.midtrans.isProduction');
+        // Config::$isSanitized = config('services.midtrans.isSanitized');
+        // Config::$is3ds = config('services.midtrans.is3ds');
 
         // buat array untuk dikirim ke midtrans
-        $midtrans = [
-            'transaction_details' => [
-                'order_id' => $code,
-                'gross_amount' => (int) $requst->total_price
-            ],
-            'customer_details' => [
-                'first_name' => Auth::user()->name,
-                 'email' => Auth::user()->email
-            ],
-            'enabled_payments' => [
-                'gopay','permata_va','bank_transfer'
-            ],
-            'vtweb' => []
-        ];
+        // $midtrans = [
+        //     'transaction_details' => [
+        //         'order_id' => $code,
+        //         'gross_amount' => (int) $requst->total_price
+        //     ],
+        //     'customer_details' => [
+        //         'first_name' => Auth::user()->name,
+        //          'email' => Auth::user()->email
+        //     ],
+        //     'enabled_payments' => [
+        //         'gopay','permata_va','bank_transfer'
+        //     ],
+        //     'vtweb' => []
+        // ];
 
-        try {
-            // Get Snap Payment Page URL
-            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+        // try {
+        //     // Get Snap Payment Page URL
+        //     $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
             
-            // Redirect to Snap Payment Page
-            return redirect($paymentUrl);
-        }
-        catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        //     // Redirect to Snap Payment Page
+        //     return redirect($paymentUrl);
+        // }
+        // catch (Exception $e) {
+        //     echo $e->getMessage();
+        // }
+        return redirect()->route('success-order');
 
     }
 
@@ -175,6 +176,11 @@ class CheckoutController extends Controller
         }
 
 
+    }
+
+    public function successOrder()
+    {
+        return view('pages.success-order');
     }
 }
 

@@ -35,9 +35,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/cart/update/min/{id}', 'CartController@updateMinus')->name('cart-update-min');
 
     Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+    Route::get('/success/order', 'CheckoutController@successOrder')
+            ->name('success-order');
 
-    Route::get('/dashboard', 'DashboardController@index')
-    ->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::get('/dashboard/products', 'DashboardProductController@index')
         ->name('dashboard-product');

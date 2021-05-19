@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-md-4">{{ $buyTransaction->product->name }} 
                               <small>
-                                x ({{ $buyTransaction->qty }})
+                                x({{ $buyTransaction->qty }})
                               </small>
                             </div>
                             <div class="col-md-3">{{ $buyTransaction->product->user->store_name }}</div>
