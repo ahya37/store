@@ -42,7 +42,7 @@
                       <div class="card-body">
                         <div class="text-center">
                           <div class="dashboard-card-title">
-                            <img src="/images/wallet.svg" alt="" />
+                            <img src="/images/wallet.svg" alt="" width="30px" />
                             <small class="badge badge-danger">3</small>
                           </div>
                           <div class="dashboard-card-subtitle">Belum Bayar</div>
@@ -56,7 +56,7 @@
                         <div class="text-center">
                           <div class="dashboard-card-title">
                             <a href="">
-                              <img src="/images/van.svg" alt="" />
+                              <img src="/images/van.svg" alt="" width="30px"/>
                               <small class="badge badge-warning">3</small>
                             </a>
                           </div>
@@ -70,7 +70,7 @@
                       <div class="card-body">
                         <div class="text-center">
                           <div class="dashboard-card-title">
-                            <img src="/images/checklist.svg" alt="" />
+                            <img src="/images/checklist.svg" alt="" width="30px"/>
                             <small class="badge badge-success">3</small>
                           </div>
                           <div class="dashboard-card-subtitle">Selesai</div>
