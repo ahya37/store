@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a href="{{ route('categories') }}" class="nav-link">Kategori</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('promotion') }}" class="nav-link">Promo</a>
+            </li>
             
             @guest
               <li class="nav-item">

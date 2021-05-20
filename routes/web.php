@@ -27,6 +27,9 @@ Route::get('/success', 'CartController@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
+Route::get('/promotion', 'PromotionController@index')->name('promotion');
+
+
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -89,7 +92,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/store/idcard/delete/{id}', 'DashboardSettingController@deleteIdCard')
         ->name('dashboard-settings-idcard-delete');
     
-
     Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')
         ->name('dashboard-settings-redirect');
 
@@ -106,6 +108,7 @@ Route::prefix('admin')
             Route::resource('product-gallery','ProductGalleryController');
             Route::resource('transactions', 'TransactionController');
             Route::resource('submissionidcard', 'SubmissionIdcardController');
+            Route::resource('promotion', 'PromotionController');
 
 
         });
