@@ -57,4 +57,12 @@ class PromotionController extends Controller
     {
 
     }
+
+    public function destroy($id)
+    {
+        $item = Promotion::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('promotion.index');
+    }
 }
