@@ -15,12 +15,23 @@ class Transaction extends Model
         'code'
     ];
 
+    protected $append = 'status_label';
+
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [];
+
+    public function getStatusLabelAttribute()
+    {
+        if ($this->transaction_status == 'UNPAID') {
+            return 'Belum Bayar';
+        }else{
+            return 'Dibayar';
+        }
+    }
 
     public function user()
     {

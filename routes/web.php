@@ -80,7 +80,8 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/dashboard/payment/{code}', 'DashboardTransactionController@payment')
         ->name('dashboard-payment');
-
+    Route::post('/dashboard/payment/store', 'DashboardTransactionController@paymentStore')
+        ->name('dashboard-payment-store');
 
     Route::get('/dashboard/setting', 'DashboardSettingController@store')
         ->name('dashboard-settings-store');

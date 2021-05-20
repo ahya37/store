@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Bank;
+use App\Http\Requests\PaymentRequest;
+use App\Payment;
 use Auth;
 
 use App\Transaction;
@@ -84,6 +86,22 @@ class DashboardTransactionController extends Controller
         $banks             = Bank::all();
         return view('pages.dashboard-transactions-payment', compact('banks','transaction'));
         
+    }
+
+    public function paymentStore(PaymentRequest $request)
+    {
+        $data = $request->all();
+
+        
+        $data['image'] = $request->file('image')->store('assets/payment','public');
+        
+        Payment::create($data);
+        
+        // update PAID pada transaksi
+        $transaction = Transaction::where('id',$request->transactions_id)->first();
+        $transaction->update(['transaction_status' => 'PAID']);
+
+        return redirect()->route('dashboard-transactions-myorder-detail',['code' => $request->code])->with(['success' => 'Konfirmasi pembayaran berhasil']);
     }
 
 }

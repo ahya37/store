@@ -18,6 +18,11 @@
               <div class="dashboard-content" id="transactionDetails">
                 <div class="row">
                   <div class="col-12">
+                    @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('success') }}</p>
+                            </div>
+                    @endif
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
@@ -34,7 +39,7 @@
                                   Status Pembayaran
                                 </div>
                                 <div class="product-subtitle text-danger">
-                                  {{ $transaction->transaction_status }}
+                                  {{ $transaction->status_label }}
                                 </div>
                               </div>
                               <div class="col-12 col-md-6">
@@ -46,11 +51,13 @@
                                   Total Pembayaran
                                 </div>
                                 <div class="product-subtitle">Rp. {{$globalFunction->formatRupiah($transaction->total_price) }}</div>
+                                @if($transaction->transaction_status == 'UNPAID')
                                 <div class="product-subtitle">
                                     <a href="{{ route('dashboard-payment', $transaction->code) }}" class="btn btn-sm btn-primaries">
-                                     Bayar
+                                     Konfirmasi Pembayaran
                                     </a>
                                 </div>
+                                @endif
                               </div>
                             </div>
                           </div>
