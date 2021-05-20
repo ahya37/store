@@ -69,7 +69,22 @@ class DashboardTransactionController extends Controller
                                     ['transaction_status','UNPAID'],
                                     ['users_id', Auth::user()->id]
                                 ])->get();
-        return view('pages.dashboard-transactions-myorder', compact('unpaid'));
+
+        $paid = Transaction::where([
+                                    ['transaction_status','PAID'],
+                                    ['users_id', Auth::user()->id]
+                                ])->get();
+
+        $sending = Transaction::where([
+                                    ['transaction_status','SENDING'],
+                                    ['users_id', Auth::user()->id]
+                                ])->get();
+        
+        $finish = Transaction::where([
+                                    ['transaction_status','FINISH'],
+                                    ['users_id', Auth::user()->id]
+                                ])->get();
+        return view('pages.dashboard-transactions-myorder', compact('unpaid','paid','sending','finish'));
     }
 
     public function myOrderDetail($code)

@@ -34,6 +34,18 @@
                           >Belum Bayar</a
                         >
                       </li>
+                       <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-home-tab"
+                          data-toggle="pill"
+                          href="#pills-box"
+                          role="tab"
+                          aria-controls="pills-home"
+                          aria-selected="true"
+                          >Dikemas</a
+                        >
+                      </li>
                       <li class="nav-item" role="presentation">
                         <a
                           class="nav-link"
@@ -86,25 +98,27 @@
                       </div>
                       <div
                         class="tab-pane fade"
-                        id="pills-profile"
+                        id="pills-box"
                         role="tabpanel"
                         aria-labelledby="pills-profile-tab"
                       >
+                        @foreach ($paid as $item)
                         <a
-                          href="/dashboard-transaction-details.html"
+                          href="{{ route('dashboard-transactions-myorder-detail', $item->code) }}"
                           class="card card-list d-block"
                         >
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-md-4">STORE - 998998</div>
+                              <div class="col-md-4">{{'#'.$item->code }}</div>
                               <div class="col-md-3"></div>
-                              <div class="col-md-3">12 Januari, 2020</div>
+                              <div class="col-md-3">{{ date('d-m-Y H:i:s', strtotime($item->created_at)) }}</div>
                               <div class="col-md-1 d-none d-md-block">
                                 <img src="/images/dashboard-arrow-right.svg" />
                               </div>
                             </div>
                           </div>
                         </a>
+                      @endforeach
                       </div>
                       <div
                         class="tab-pane fade"

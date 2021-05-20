@@ -81,7 +81,7 @@
                                   <small>
                                   x {{ $item->qty }}
                                   </small>
-                                  <p class="product-title">Nama Toko</p>
+                                  <p class="product-title">{{ $item->product->user->store_name }}</p>
                                 </div>
                                 <div class="col-md-3">
                                   Rp. {{$globalFunction->formatRupiah($item->price) }}

@@ -32,4 +32,9 @@ class TransactionDetail extends Model
     {
         return $this->hasOne(Transaction::class,'id','transactions_id');
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class,'id','users_id');
+    }
 }

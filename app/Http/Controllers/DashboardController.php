@@ -32,6 +32,11 @@ class DashboardController extends Controller
                                     ['transaction_status','UNPAID'],
                                     ['users_id', Auth::user()->id]
                                 ])->get();
+        
+        $paid = Transaction::where([
+                                    ['transaction_status','PAID'],
+                                    ['users_id', Auth::user()->id]
+                                ])->get();
 
         $shipping = Transaction::where([
                                     ['transaction_status','SHIPPING'],
@@ -45,6 +50,7 @@ class DashboardController extends Controller
             'revenue' => $revenue,
             'customer' => $customer,
             'unpaid' => $unpaid->count(),
+            'paid' => $paid->count(),
             'shipping' => $shipping->count()
         ]);
     }

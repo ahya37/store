@@ -37,14 +37,14 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="card mb-2">
                       <a href="{{ route('dashboard-transactions-myorder') }}">
                         <div class="card-body">
                           <div class="text-center">
                             <div class="dashboard-card-title">
                               <img src="/images/wallet.svg" alt="" width="30px" />
-                              <small class="badge badge-danger">{{ $unpaid }}</small>
+                              <small class="badge badge-warning">{{ $unpaid == 0 ? '' : $unpaid }}</small>
                             </div>
                             <div class="dashboard-card-subtitle">Belum Bayar</div>
                           </div>
@@ -52,7 +52,22 @@
                       </a>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
+                    <div class="card mb-2">
+                      <a href="{{ route('dashboard-transactions-myorder') }}">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="dashboard-card-title">
+                              <img src="/images/box.svg" alt="" width="30px" />
+                              <small class="badge badge-warning">{{ $paid == 0 ? '' : $paid}}</small>
+                            </div>
+                            <div class="dashboard-card-subtitle">DIKEMAS</div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
                     <div class="card mb-2">
                       <div class="card-body">
                         <div class="text-center">
@@ -67,7 +82,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="card mb-2">
                       <div class="card-body">
                         <div class="text-center">
