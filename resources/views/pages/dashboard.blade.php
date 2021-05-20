@@ -39,15 +39,17 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="card mb-2">
-                      <div class="card-body">
-                        <div class="text-center">
-                          <div class="dashboard-card-title">
-                            <img src="/images/wallet.svg" alt="" width="30px" />
-                            <small class="badge badge-danger">3</small>
+                      <a href="{{ route('dashboard-transactions-myorder') }}">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="dashboard-card-title">
+                              <img src="/images/wallet.svg" alt="" width="30px" />
+                              <small class="badge badge-danger">{{ $unpaid }}</small>
+                            </div>
+                            <div class="dashboard-card-subtitle">Belum Bayar</div>
                           </div>
-                          <div class="dashboard-card-subtitle">Belum Bayar</div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -57,7 +59,7 @@
                           <div class="dashboard-card-title">
                             <a href="">
                               <img src="/images/van.svg" alt="" width="30px"/>
-                              <small class="badge badge-warning">3</small>
+                              <small class="badge badge-warning">{{ $shipping == 0 ? '' : $shipping }}</small>
                             </a>
                           </div>
                           <div class="dashboard-card-subtitle">Dikirim</div>
@@ -71,7 +73,6 @@
                         <div class="text-center">
                           <div class="dashboard-card-title">
                             <img src="/images/checklist.svg" alt="" width="30px"/>
-                            <small class="badge badge-success">3</small>
                           </div>
                           <div class="dashboard-card-subtitle">Selesai</div>
                         </div>

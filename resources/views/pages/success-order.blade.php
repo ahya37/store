@@ -13,7 +13,7 @@
               <img src="/images/success.svg" class="mb-4" />
               <h2>Pemesanan Berhasil !</h2>
               <div>
-                <a href="{{ route('dashboard-transactions') }}" class="btn btn-success w-50 mt-4"
+                <a href="{{ route('dashboard') }}" class="btn btn-success w-50 mt-4"
                   >Lanjut Pembayaran</a
                 >
               </div>

@@ -11241,6 +11241,46 @@ footer p {
   color: #9191a9;
 }
 
+.page-dashboard .section-content .btn-primaries {
+  margin-top: 0px;
+  color: #fff;
+  background-color: #ff6442;
+  border-color: transparent;
+}
+
+.page-dashboard .section-content .btn-primaries:hover {
+  color: #fff;
+  background-color: #ff451c;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.page-dashboard .section-content .btn-primaries:focus, .page-dashboard .section-content .btn-primaries.focus {
+  color: #fff;
+  background-color: #ff451c;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.page-dashboard .section-content .btn-primaries.disabled, .page-dashboard .section-content .btn-primaries:disabled {
+  color: #fff;
+  background-color: #ff6442;
+  border-color: transparent;
+}
+
+.page-dashboard .section-content .btn-primaries:not(:disabled):not(.disabled):active, .page-dashboard .section-content .btn-primaries:not(:disabled):not(.disabled).active,
+.show > .page-dashboard .section-content .btn-primaries.dropdown-toggle {
+  color: #fff;
+  background-color: #ff3a0f;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.page-dashboard .section-content .btn-primaries:not(:disabled):not(.disabled):active:focus, .page-dashboard .section-content .btn-primaries:not(:disabled):not(.disabled).active:focus,
+.show > .page-dashboard .section-content .btn-primaries.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+
 .page-dashboard .section-content .product-title {
   font-weight: normal;
   font-size: 16px;

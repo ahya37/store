@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Province;
+use App\Models\Regency;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,7 +47,7 @@ class User extends Authenticatable
 
     public function regencies()
     {
-        return $this->hasOne(Province::class,'id','regencies_id');
+        return $this->hasOne(Regency::class,'id','regencies_id');
     }
 
 }
