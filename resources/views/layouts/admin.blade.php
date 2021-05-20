@@ -41,8 +41,8 @@
               Produk
             </a>
             <a
-              href="{{ route('promotion.create') }}"
-              class="list-group-item list-group-item-action"
+              href="{{ route('promotion.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/promotion*')) ? 'active' : '' }}"
             >
               Promosi
             </a>

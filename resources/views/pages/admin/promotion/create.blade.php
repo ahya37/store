@@ -37,7 +37,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Kategori</label>
+                                                <label>Produk</label>
                                                 <select name="products_id" class="form-control">
                                                     @foreach ($products as $product)
                                                         <option value="{{ $product->id }}">{{ $product->name }}</option>
