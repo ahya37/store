@@ -15,7 +15,7 @@ class Transaction extends Model
         'code'
     ];
 
-    protected $append = 'status_label';
+    protected $append = ['status_label'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,5 +41,10 @@ class Transaction extends Model
     public function transactionDetails()
     {
         return $this->hasMany(TransactionDetail::class,'transactions_id','id');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class,'transactions_id','id');
     }
 }

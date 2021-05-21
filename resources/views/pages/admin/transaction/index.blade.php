@@ -22,6 +22,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Kode</th>
                                                 <th>Nama</th>
                                                 <th>Harga</th>
                                                 <th>Status</th>
@@ -57,6 +58,7 @@ var editor;
         },
         columns:[
             {data: 'id', name:'id'},
+            {data: 'code', name:'code'},
             {data: 'user.name', name:'user.name'},
             {data: 'total_price', name:'total_price'},
             {data: 'transaction_status', name:'transaction_status'},
@@ -74,7 +76,7 @@ var editor;
         ],
         columnDefs:[
             {
-            targets:4, render:function(data){
+            targets:5, render:function(data){
                     return moment(data).format('DD/MM/YYYY, hh:mm:ss');
                 }
             }

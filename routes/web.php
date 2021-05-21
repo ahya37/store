@@ -114,6 +114,8 @@ Route::prefix('admin')
             Route::resource('submissionidcard', 'SubmissionIdcardController');
             Route::resource('promotion', 'PromotionController');
 
+            Route::post('aproov/payment/{id}','TransactionController@aproovPayment')->name('aproov-payment');
+
 
         });
 

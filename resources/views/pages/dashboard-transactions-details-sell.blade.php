@@ -50,7 +50,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="product-title">Status Pembayaran</div>
                                 <div class="product-subtitle text-danger">
-                                  {!! $transaction->transaction->status_label !!}
+                                  {!! $transaction->transaction->status_label !!} - {!! $transaction->transaction->payment->status_label !!}
                                 </div>
                               </div>
                               <div class="col-12 col-md-6">

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Payment;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 use App\Transaction;
+use App\TransactionDetail;
 
 class TransactionController extends Controller
 {
@@ -28,6 +30,9 @@ class TransactionController extends Controller
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="' .route('transactions.show', $item->id). '">
+                                        Lihat
+                                     </a>
                                      <a class="dropdown-item" href="' .route('transactions.edit', $item->id). '">
                                         Edit
                                      </a>
@@ -77,7 +82,11 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaction       = Transaction::with(['user.regencies.province'])->where('id', $id)->first();
+        $items             = TransactionDetail::with(['product.galleries'])->where('transactions_id', $transaction->id)->get();
+        $globalFunction    = app('GlobalFunction');
+
+        return view('pages.admin.transaction.show', compact('transaction','items','globalFunction'));
     }
 
     /**
@@ -121,5 +130,12 @@ class TransactionController extends Controller
         $item->delete();
 
         return redirect()->route('transactions.index');
+    }
+
+    public function aproovPayment($id)
+    {
+        $payment = Payment::where('id',$id)->first();
+        $payment->update(['status_confirmed' => 1]);
+        return redirect()->back()->with(['success' => 'Pembayaran telah diterima']);
     }
 }
