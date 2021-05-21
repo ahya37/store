@@ -51,7 +51,7 @@
                           class="nav-link"
                           id="pills-profile-tab"
                           data-toggle="pill"
-                          href="#pills-profile"
+                          href="#pills-sending"
                           role="tab"
                           aria-controls="pills-profile"
                           aria-selected="false"
@@ -103,21 +103,58 @@
                         aria-labelledby="pills-profile-tab"
                       >
                         @foreach ($paid as $item)
-                        <a
-                          href="{{ route('dashboard-transactions-myorder-detail', $item->code) }}"
+                        <div
                           class="card card-list d-block"
                         >
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-md-4">{{'#'.$item->code }}</div>
-                              <div class="col-md-3"></div>
+                              <div class="col-md-1">
+                                <img
+                                src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
+                                class="w-50"
+                              />
+                              </div>
+                              <div class="col-md-5">{{ $item->product->name }}  
+                                <small>({{'x'. $item->qty  }})</small>
+                              </div>
                               <div class="col-md-3">{{ date('d-m-Y H:i:s', strtotime($item->created_at)) }}</div>
-                              <div class="col-md-1 d-none d-md-block">
-                                <img src="/images/dashboard-arrow-right.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      @endforeach
+                      </div>
+                      <div
+                        class="tab-pane fade"
+                        id="pills-sending"
+                        role="tabpanel"
+                        aria-labelledby="pills-profile-tab"
+                      >
+                      @foreach ($sending as $item)
+                        <div
+                          href="/dashboard-transaction-details.html"
+                          class="card card-list d-block"
+                        >
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-1">
+                                <img
+                                src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
+                                class="w-50"
+                              />
+                              </div>
+                              <div class="col-md-4">{{ $item->product->name }}  
+                                <small>({{'x'. $item->qty  }})</small>
+                              </div>
+                              <div class="col-md-3">{{ date('d-m-Y H:i:s', strtotime($item->created_at)) }}</div>
+                              <div class="col-md-3">
+                                <form action="{{ route('dashboard-transactions-myorder-finish', $item->id) }}" method="POST">
+                                  @csrf
+                                  <button class="btn btn-sm btn-primaries">Diterima</button>
+                                </form>
                               </div>
                             </div>
                           </div>
-                        </a>
+                        </div>
                       @endforeach
                       </div>
                       <div
@@ -126,22 +163,27 @@
                         role="tabpanel"
                         aria-labelledby="pills-profile-tab"
                       >
-                      @foreach ($unpaid as $item)
-                        <a
+                      @foreach ($finish as $item)
+                        <div
                           href="/dashboard-transaction-details.html"
                           class="card card-list d-block"
                         >
                           <div class="card-body">
                             <div class="row">
-                              <div class="col-md-4">{{ $item->code }}</div>
-                              <div class="col-md-3"></div>
-                              <div class="col-md-3">12 Januari, 2020</div>
-                              <div class="col-md-1 d-none d-md-block">
-                                <img src="/images/dashboard-arrow-right.svg" />
+                              <div class="col-md-1">
+                                <img
+                                src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
+                                class="w-50"
+                              />
                               </div>
+                              <div class="col-md-5">{{ $item->product->name }}  
+                                <small>({{'x'. $item->qty  }})</small>
+                              </div>
+                              <div class="col-md-3">{{ date('d-m-Y H:i:s', strtotime($item->created_at)) }}</div>
+                              <div class="col-md-3"></div>
                             </div>
                           </div>
-                        </a>
+                        </div>
                       @endforeach
                       </div>
                     </div>

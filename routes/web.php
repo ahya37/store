@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/transactions/myorder/list/detail/{code}', 'DashboardTransactionController@myOrderDetail')
         ->name('dashboard-transactions-myorder-detail');
 
+    Route::post('/dashboard/transactions/myorder/finish/{id}', 'DashboardTransactionController@orderFinish')
+        ->name('dashboard-transactions-myorder-finish');
+
     Route::get('/dashboard/transactions/buy/{id}', 'DashboardTransactionController@detailsBuy')
         ->name('dashboard-transactions-details-buy');
 

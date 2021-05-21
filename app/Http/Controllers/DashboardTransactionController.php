@@ -65,25 +65,29 @@ class DashboardTransactionController extends Controller
 
     public function myOrder()
     {
-         $unpaid = Transaction::where([
+        $unpaid = Transaction::where([
                                     ['transaction_status','UNPAID'],
                                     ['users_id', Auth::user()->id]
                                 ])->get();
 
-        $paid = Transaction::where([
-                                    ['transaction_status','PAID'],
-                                    ['users_id', Auth::user()->id]
-                                ])->get();
+        $paid = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->whereHas('transaction', function($transaction){
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->where('shipping_status','PENDING')
+                        ->get();
 
-        $sending = Transaction::where([
-                                    ['transaction_status','SENDING'],
-                                    ['users_id', Auth::user()->id]
-                                ])->get();
+        $sending =  TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->whereHas('transaction', function($transaction){
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->where('shipping_status','SHIPPING')
+                        ->get();
         
-        $finish = Transaction::where([
-                                    ['transaction_status','FINISH'],
-                                    ['users_id', Auth::user()->id]
-                                ])->get();
+        $finish = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->whereHas('transaction', function($transaction){
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->where('shipping_status','FINISH')
+                        ->get();
+
         return view('pages.dashboard-transactions-myorder', compact('unpaid','paid','sending','finish'));
     }
 
@@ -117,6 +121,13 @@ class DashboardTransactionController extends Controller
         $transaction->update(['transaction_status' => 'PAID']);
 
         return redirect()->route('dashboard-transactions-myorder-detail',['code' => $request->code])->with(['success' => 'Konfirmasi pembayaran berhasil']);
+    }
+
+    public function orderFinish($id)
+    {
+        $transaction = TransactionDetail::where('id', $id)->first();
+        $transaction->update(['shipping_status' => 'FINISH']);
+        return redirect()->back();
     }
 
 }

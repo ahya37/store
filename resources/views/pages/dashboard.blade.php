@@ -69,16 +69,16 @@
                   </div>
                   <div class="col-md-3">
                     <div class="card mb-2">
+                      <a href="{{ route('dashboard-transactions-myorder') }}">
                       <div class="card-body">
                         <div class="text-center">
                           <div class="dashboard-card-title">
-                            <a href="">
                               <img src="/images/van.svg" alt="" width="30px"/>
                               <small class="badge badge-warning">{{ $shipping == 0 ? '' : $shipping }}</small>
-                            </a>
+                            </div>
+                            <div class="dashboard-card-subtitle">Dikirim</div>
                           </div>
-                          <div class="dashboard-card-subtitle">Dikirim</div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>

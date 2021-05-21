@@ -33,15 +33,16 @@ class DashboardController extends Controller
                                     ['users_id', Auth::user()->id]
                                 ])->get();
         
-        $paid = Transaction::where([
-                                    ['transaction_status','PAID'],
-                                    ['users_id', Auth::user()->id]
-                                ])->get();
+        $paid = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->whereHas('transaction', function($transaction){
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->where('shipping_status','PENDING')->get();
 
-        $shipping = Transaction::where([
-                                    ['transaction_status','SHIPPING'],
-                                    ['users_id', Auth::user()->id]
-                                ])->get();
+        $shipping = TransactionDetail::with(['transaction.user','product.galleries'])
+                        ->whereHas('transaction', function($transaction){
+                            $transaction->where('users_id', Auth::user()->id);
+                        })->where('shipping_status','SHIPPING')
+                        ->get();
 
         $customer = User::count();
         return view('pages.dashboard',[

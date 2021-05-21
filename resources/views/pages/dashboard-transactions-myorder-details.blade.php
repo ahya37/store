@@ -79,7 +79,7 @@
                                 <div class="col-md-4">
                                   {{ $item->product->name }}
                                   <small>
-                                  x {{ $item->qty }}
+                                  (x {{ $item->qty }})
                                   </small>
                                   <p class="product-title">{{ $item->product->user->store_name }}</p>
                                 </div>
