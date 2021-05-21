@@ -35,7 +35,8 @@ class DashboardController extends Controller
         
         $paid = TransactionDetail::with(['transaction.user','product.galleries'])
                         ->whereHas('transaction', function($transaction){
-                            $transaction->where('users_id', Auth::user()->id);
+                            $transaction->where('users_id', Auth::user()->id)
+                                    ->where('transaction_status','PAID');
                         })->where('shipping_status','PENDING')->get();
 
         $shipping = TransactionDetail::with(['transaction.user','product.galleries'])

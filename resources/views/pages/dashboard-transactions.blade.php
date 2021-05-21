@@ -75,8 +75,9 @@
                                 x ({{ $sellTransaction->qty }})
                               </small>
                             </div>
-                            <div class="col-md-3">{{ $sellTransaction->product->user->store_name }}</div>
-                            <div class="col-md-3">{{ $sellTransaction->created_at }}</div>
+                            <div class="col-md-2">{{ $sellTransaction->product->user->store_name }}</div>
+                            <div class="col-md-2">{{ $sellTransaction->shipping_status }}</div>
+                            <div class="col-md-2">{{ $sellTransaction->created_at }}</div>
                             <div class="col-md-1 d-none d-md-block">
                               <img src="/images/dashboard-arrow-right.svg" />
                             </div>
