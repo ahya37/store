@@ -110,7 +110,6 @@ class DashboardTransactionController extends Controller
     {
         $data = $request->all();
 
-        
         $data['image'] = $request->file('image')->store('assets/payment','public');
         
         Payment::create($data);

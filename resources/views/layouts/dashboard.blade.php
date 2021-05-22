@@ -52,6 +52,12 @@
               Pengaturan Toko
             </a>
             <a
+              href="{{ route('dashboard-report') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard/report*')) ? 'active' : '' }}"
+            >
+              Laporan
+            </a>
+            <a
               href="{{ route('dashboard-settings-account') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
             >

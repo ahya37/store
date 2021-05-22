@@ -99,6 +99,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/account/{redirect}', 'DashboardSettingController@update')
         ->name('dashboard-settings-redirect');
 
+    Route::get('/dashboard/report', 'DashboardReportController@index')
+        ->name('dashboard-report');
+
 });
 Route::prefix('admin')
         ->namespace('Admin')
