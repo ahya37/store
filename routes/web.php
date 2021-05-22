@@ -119,6 +119,8 @@ Route::prefix('admin')
 
             Route::post('aproov/payment/{id}','TransactionController@aproovPayment')->name('aproov-payment');
 
+            Route::resource('report','ReportController');
+
 
         });
 

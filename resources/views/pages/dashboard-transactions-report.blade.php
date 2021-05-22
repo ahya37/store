@@ -13,7 +13,7 @@
             <div class="container-fluid">
               <div class="dashboard-heading">
                 <h2 class="dashboard-title">Laporan</h2>
-                <p class="dashboard-subtitle">TLaporan Produk Dijual</p>
+                <p class="dashboard-subtitle">Laporan Produk Dijual</p>
               </div>
               <div class="dashboard-content" id="transactionDetails">
                 <div class="row">

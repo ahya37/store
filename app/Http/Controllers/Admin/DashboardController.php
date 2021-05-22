@@ -14,6 +14,7 @@ class DashboardController extends Controller
         $customer = User::count();
         $revenue  = Transaction::sum('total_price');
         $transaction  = Transaction::count();
-        return view('pages.admin.dashboard', compact('customer','revenue','transaction'));
+        $globalFunction = app('GlobalFunction');
+        return view('pages.admin.dashboard', compact('customer','revenue','transaction','globalFunction'));
     }
 }

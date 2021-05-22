@@ -68,9 +68,15 @@
             </a>
              <a
               href="{{  route('transactions.index')  }}"
-              class="list-group-item list-group-item-action"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/transactions*')) ? 'active' : '' }}"
             >
               Transaksi
+            </a>
+            <a
+              href="{{  route('report.index')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/report*')) ? 'active' : '' }}"
+            >
+              Laporan
             </a>
             <a
               href="{{ route('user.index') }}"

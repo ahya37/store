@@ -20,4 +20,14 @@ class Report extends Model
         $result = DB::select($sql);
         return $result;
     }
+
+    public function getReportTransactionsAdmin()
+    {
+        $result    = DB::table('transaction_details as a')
+                    ->select('c.id as users_id','c.store_name')
+                    ->join('products as b','a.products_id','=','b.id')
+                    ->join('users as c','b.users_id','c.id')
+                    ->groupBy('c.id')->get();
+        return $result;
+    }
 }
