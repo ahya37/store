@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Cart;
+use App\Point;
 use App\Transaction;
 use App\TransactionDetail;
-
+use App\Providers\GlobalFunction;
 use Exception;
 
 use Midtrans\Snap;
@@ -51,6 +52,22 @@ class CheckoutController extends Controller
 
         }
 
+        // menghitung point dari setiap transaksi
+        $globalFunction = new GlobalFunction();
+        $point          = $globalFunction->point($requst->total_price);
+        $nominal_point  = $point['nominalPoint'];
+        $amount_point   = $point['amountPoint'];
+
+        // jika nominal point nya >= 10
+        if ($nominal_point >= 10) {
+            // simpan point setiap kali transaksi
+            $point = Point::create([
+                'users_id' => Auth::user()->id,
+                'nominal_point' => $nominal_point,
+                'amount_point'  => $amount_point
+            ]);
+        }
+
         // delete cart data
         Cart::where('users_id', Auth::user()->id)->delete();
 
@@ -86,7 +103,7 @@ class CheckoutController extends Controller
         // catch (Exception $e) {
         //     echo $e->getMessage();
         // }
-        return redirect()->route('success-order');
+        return $this->successOrder($point);
 
     }
 
@@ -178,9 +195,11 @@ class CheckoutController extends Controller
 
     }
 
-    public function successOrder()
+    public function successOrder($point)
     {
-        return view('pages.success-order');
+        $nominal_point = $point->nominal_point ?? '';
+        $amount_point  = $point->amount_point ?? '';
+        return view('pages.success-order', compact('nominal_point','amount_point'));
     }
 }
 

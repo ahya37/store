@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
+use App\Point;
 use App\Transaction;
 use Illuminate\Http\Request;
 
@@ -45,6 +47,12 @@ class DashboardController extends Controller
                         })->where('shipping_status','SHIPPING')
                         ->get();
 
+        $point = Point::where('users_id', Auth::user()->id)->get();
+        $total_point = collect($point)->sum(function($q){
+            return $q['amount_point'];
+        });
+
+
         $customer = User::count();
         return view('pages.dashboard',[
             'transaction_count' => $transactions->count(),
@@ -53,6 +61,7 @@ class DashboardController extends Controller
             'customer' => $customer,
             'unpaid' => $unpaid->count(),
             'paid' => $paid->count(),
+            'total_point' => $total_point,
             'shipping' => $shipping->count()
         ]);
     }

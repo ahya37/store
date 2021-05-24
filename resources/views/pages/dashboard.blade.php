@@ -30,6 +30,14 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="card mb-2">
+                      <div class="card-body">
+                        <div class="dashboard-card-title">Poin</div>
+                        <div class="dashboard-card-subtitle">{{ number_format($total_point) }}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-4">
