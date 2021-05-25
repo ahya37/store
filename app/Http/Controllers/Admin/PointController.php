@@ -175,7 +175,7 @@ class PointController extends Controller
     public function exchangePoint($id)
     {
        $point = Point::with(['user'])->findOrFail($id);
-       $products = Product::select('id','point','name','price')->get();
+       $products = Product::select('id','point','name','price')->where('point','!=',0)->get();
        $globalFunction = app('GlobalFunction');
 
        return view('pages.admin.point.exchange-point', compact('point','products','globalFunction'));
