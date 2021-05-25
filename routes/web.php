@@ -124,6 +124,7 @@ Route::prefix('admin')
             Route::post('point/excel/upload','PointController@saveExcelUploadPoint')->name('point-upload-excel-save');
             Route::get('point/exchange/{id}','PointController@exchangePoint')->name('point-exchange');
             Route::post('point/exchange/{id}','PointController@StoreexchangePoint')->name('point-exchange-store');
+            Route::get('point/exchange/history/{users_id}','PointController@historyExchangePoint')->name('point-exchange-history');
 
 
         });

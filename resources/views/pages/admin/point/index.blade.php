@@ -37,7 +37,6 @@
                                                 <th>Telpon</th>
                                                 <th>Jumlah Poin</th>
                                                 <th>Nominal Poin (Rp)</th>
-                                                <th></th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -93,10 +92,6 @@
             {data: 'user.phone_number', name:'user.phone_number'},
             {data: 'nominal_point', name:'nominal_point'},
             {data: 'amount_point', name:'amount_point'},
-            {
-                data: 'exchange',
-                name: 'exchange'
-            },
             {
                 data: 'action', 
                 name:'action',

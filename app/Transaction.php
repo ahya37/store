@@ -12,6 +12,7 @@ class Transaction extends Model
         'shipping_price',
         'total_price',
         'transaction_status',
+        'exchange_point',
         'code'
     ];
 

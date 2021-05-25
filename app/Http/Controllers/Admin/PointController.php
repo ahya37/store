@@ -27,6 +27,12 @@ class PointController extends Controller
                             <div class="dropdown">
                                 <button class="btn btn-primary btn-sm dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="' .route('point-exchange', $item->id). '">
+                                        Tukar Poin
+                                     </a>
+                                      <a class="dropdown-item" href="' .route('point-exchange-history', $item->users_id). '">
+                                        Histori Tukar Poin
+                                     </a>
                                      <form action="'. route('point.destroy', $item->id) .'" method="POST">
                                          '. method_field('delete') . csrf_field() .'
                                          <button type="submit" class="dropdown-item text-danger">
@@ -38,10 +44,7 @@ class PointController extends Controller
                         </div>
                     ';
                 })
-                ->editColumn('exchange', function($item){
-                    return '<a href="'.route('point-exchange', $item->id).'" class="btn btn-sm btn-info text-white">Tukar Poin</a>';
-                })
-                ->rawColumns(['action','exchange'])
+                ->rawColumns(['action'])
                 ->make();
         }
         return view('pages.admin.point.index');
@@ -212,6 +215,7 @@ class PointController extends Controller
                         'shipping_price' => 0,
                         'total_price' => $total_price,
                         'transaction_status' => 'PAID',
+                        'exchange_point' => 1,
                         'code' => $code
                 ]);
                 
@@ -222,7 +226,7 @@ class PointController extends Controller
                             'transactions_id' => $transaction->id,
                             'products_id' => $val,
                             'price' => $price[$index],
-                            'qty'   => 0,
+                            'qty'   => 1,
                             'shipping_status' => 'PENDING',
                             'resi' => '',
                             'code' => $trx
@@ -241,6 +245,43 @@ class PointController extends Controller
 
             return redirect()->route('point.index')->with(['success' => 'Point telah ditukarkan']);
 
+    }
+
+    public function historyExchangePoint($users_id)
+    {
+        if (request()->ajax()) 
+        {
+            $query = Transaction::with(['user'])->where([
+                ['users_id', $users_id],
+                ['exchange_point','=',1]
+            ]);
+
+            return Datatables::of($query)
+                ->addColumn('action', function($item){
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="' .route('transactions.show', $item->id). '">
+                                        Lihat
+                                     </a>
+                                     <form action="'. route('transactions.destroy', $item->id) .'" method="POST">
+                                         '. method_field('delete') . csrf_field() .'
+                                         <button type="submit" class="dropdown-item text-danger">
+                                            Hapus
+                                         </button>
+                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    ';
+                })
+                ->rawColumns(['action'])
+                ->make();
+        }
+        return view('pages.admin.point.history-exchange-point');
+        
     }
 
 }
