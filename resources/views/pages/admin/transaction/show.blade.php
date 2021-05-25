@@ -39,7 +39,7 @@
                                   Status Pembayaran
                                 </div>
                                 <div class="product-subtitle text-danger">
-                                  {{ $transaction->status_label }} - {!! $transaction->payment->status_label !!}
+                                  {{ $transaction->status_label ?? '' }} - {!! $transaction->payment->status_label ?? '' !!} 
                                 </div>
                               </div>
                               <div class="col-12 col-md-6">
@@ -55,7 +55,7 @@
                                     Bukti Pembayaran
                                     </div>
                                     <div class="product-subtitle">
-                                    <a href="{{ Storage::url($transaction->payment->image)  }}" target="_blank">
+                                    <a href="{{ Storage::url($transaction->payment->image) ?? '' }}" target="_blank">
                                         <img
                                         src="{{ Storage::url($transaction->payment->image) ?? ''}}"
                                         style="width: 60px"

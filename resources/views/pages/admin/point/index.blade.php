@@ -28,9 +28,6 @@
                                 <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
                                     Upload Excel
                                 </button>
-                                <a href="{{ route('point.create') }}" class="btn btn-sm btn-info mb-3">
-                                    - Tukar Poin
-                                </a>
                                 <div class="table-responsive">
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
@@ -40,6 +37,7 @@
                                                 <th>Telpon</th>
                                                 <th>Jumlah Poin</th>
                                                 <th>Nominal Poin (Rp)</th>
+                                                <th></th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -69,9 +67,9 @@
         <form action="{{ route('point-upload-excel') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file">
-                        <div class="modal-footer">
-                          <button type="submit" class="btn btn-sm btn-success">Upload</button>
-                        </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-sm btn-success">Upload</button>
+            </div>
         </form>
       </div>
     </div>
@@ -96,12 +94,16 @@
             {data: 'nominal_point', name:'nominal_point'},
             {data: 'amount_point', name:'amount_point'},
             {
+                data: 'exchange',
+                name: 'exchange'
+            },
+            {
                 data: 'action', 
                 name:'action',
                 orderable: false,
                 searchable: false,
                 width: '15%',
-            },
+            }
         ]
     });
 </script>    

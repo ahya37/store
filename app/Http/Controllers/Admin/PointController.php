@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Point;
+use App\Product;
+use App\Transaction;
+use App\TransactionDetail;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 use App\Providers\GlobalFunction;
+use App\Http\Controllers\Controller;
+use Yajra\DataTables\Facades\DataTables;
 
 class PointController extends Controller
 {
@@ -22,7 +25,7 @@ class PointController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
+                                <button class="btn btn-primary btn-sm dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
                                 <div class="dropdown-menu">
                                      <form action="'. route('point.destroy', $item->id) .'" method="POST">
                                          '. method_field('delete') . csrf_field() .'
@@ -35,7 +38,10 @@ class PointController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['action'])
+                ->editColumn('exchange', function($item){
+                    return '<a href="'.route('point-exchange', $item->id).'" class="btn btn-sm btn-info text-white">Tukar Poin</a>';
+                })
+                ->rawColumns(['action','exchange'])
                 ->make();
         }
         return view('pages.admin.point.index');
@@ -82,7 +88,7 @@ class PointController extends Controller
             ]);
         }
 
-        return redirect()->route('point.index')->with(['success' => 'Poin telah diambahkan']);
+        return redirect()->route('point.index')->with(['success' => 'Poin telah ditambahkan']);
     }
 
     public function destroy($id)
@@ -161,6 +167,80 @@ class PointController extends Controller
         }
 
         return redirect()->route('point.index')->with(['success' => 'File telah di upload']);
+    }
+
+    public function exchangePoint($id)
+    {
+       $point = Point::with(['user'])->findOrFail($id);
+       $products = Product::select('id','point','name','price')->get();
+       $globalFunction = app('GlobalFunction');
+
+       return view('pages.admin.point.exchange-point', compact('point','products','globalFunction'));
+    }
+
+    public function StoreexchangePoint(Request $request, $id)
+    {
+
+            $users_id    = $request->input('users_id'); 
+            $products_id = $request->input('products_id');
+            $price       = $request->input('price');
+            
+            foreach ($products_id as $key => $value) {
+                // get price dari masing2 produk
+                $products[] = Product::select('id','price','point')->where('id', $products_id[$key])->first();
+                // menghitung total harga
+                $total_price = collect($products)->sum(function($q){
+                    return $q['price'];
+                });
+
+                $total_point = collect($products)->sum(function($q){
+                    return $q['point'];
+                });
+            };
+
+            // jika jumlah point yang di tukarkan melebihi point yang dimiliki, maka peringati
+            $point = Point::where('users_id', $users_id)->first();
+            if ($total_point > $point->nominal_point ) {
+                return redirect()->back()->with(['error' => 'Point belum mencukupi untuk ditukarkan']);
+
+            }else{
+                // simpan transaksi
+                $code = 'STORE-' . mt_rand(00000,99999);
+                $transaction = Transaction::create([
+                        'users_id' => $users_id,
+                        'inscurance_price' => 0,
+                        'shipping_price' => 0,
+                        'total_price' => $total_price,
+                        'transaction_status' => 'PAID',
+                        'code' => $code
+                ]);
+                
+                // simpan detail transaksi
+                foreach ($products_id as $index => $val) {
+                        $trx = 'TRX-' . mt_rand(00000,99999);
+                        TransactionDetail::create([
+                            'transactions_id' => $transaction->id,
+                            'products_id' => $val,
+                            'price' => $price[$index],
+                            'qty'   => 0,
+                            'shipping_status' => 'PENDING',
+                            'resi' => '',
+                            'code' => $trx
+                        ]);
+                }
+    
+                $nominal_point = $point->nominal_point - $total_point;
+                $amount_point  = $nominal_point * 100;
+                $point->update([
+                    'nominal_point' => $nominal_point,
+                    'amount_point'  => $amount_point
+                ]);
+
+            }
+
+
+            return redirect()->route('point.index')->with(['success' => 'Point telah ditukarkan']);
+
     }
 
 }
