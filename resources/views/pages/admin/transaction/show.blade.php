@@ -55,9 +55,9 @@
                                     Bukti Pembayaran
                                     </div>
                                     <div class="product-subtitle">
-                                    <a href="{{ Storage::url($transaction->payment->image) ?? '' }}" target="_blank">
+                                    <a href="{{ Storage::url($transaction->payment->image ?? '') }}" target="_blank">
                                         <img
-                                        src="{{ Storage::url($transaction->payment->image) ?? ''}}"
+                                        src="{{ Storage::url($transaction->payment->image ?? '')}}"
                                         style="width: 60px"
                                         />
                                     </a>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="row mt-4">
                           <div class="col-12 text-right">
-                              <form action="{{ route('aproov-payment', $transaction->payment->id) }}" method="POST">
+                              <form action="{{ route('aproov-payment', $transaction->payment->id ?? '') }}" method="POST">
                                   @csrf
                                   <button
                                     type="submit"
