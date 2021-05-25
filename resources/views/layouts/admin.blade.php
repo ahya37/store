@@ -73,6 +73,12 @@
               Transaksi
             </a>
             <a
+              href="{{  route('point.index')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/point*')) ? 'active' : '' }}"
+            >
+              Poin
+            </a>
+            <a
               href="{{  route('report.index')  }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/report*')) ? 'active' : '' }}"
             >

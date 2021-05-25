@@ -118,7 +118,9 @@ Route::prefix('admin')
             Route::post('aproov/payment/{id}','TransactionController@aproovPayment')->name('aproov-payment');
 
             Route::resource('report','ReportController');
-
+            Route::resource('point','PointController');
+            Route::post('point/excel','PointController@uploadPointExcel')->name('point-upload-excel');
+            Route::post('point/excel/upload','PointController@saveExcelUploadPoint')->name('point-upload-excel-save');
 
         });
 

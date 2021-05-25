@@ -18,11 +18,11 @@ use Midtrans\Notification;
 
 class CheckoutController extends Controller
 {
-    public function process(Request $requst)
+    public function process(Request $request)
     {
         // save user data
         $user  = Auth::user();
-        $user->update($requst->except('total_price'));
+        $user->update($request->except('total_price'));
 
         // proses checkout
         $code = 'STORE-' . mt_rand(00000,99999);
@@ -33,7 +33,7 @@ class CheckoutController extends Controller
             'users_id' => Auth::user()->id,
             'inscurance_price' => 0,
             'shipping_price' => 0,
-            'total_price' => $requst->total_price,
+            'total_price' => $request->total_price,
             'transaction_status' => 'UNPAID',
             'code' => $code
         ]);
@@ -54,7 +54,7 @@ class CheckoutController extends Controller
 
         // menghitung point dari setiap transaksi
         $globalFunction = new GlobalFunction();
-        $point          = $globalFunction->point($requst->total_price);
+        $point          = $globalFunction->point($request->total_price);
         $nominal_point  = $point['nominalPoint'];
         $amount_point   = $point['amountPoint'];
 
@@ -81,7 +81,7 @@ class CheckoutController extends Controller
         // $midtrans = [
         //     'transaction_details' => [
         //         'order_id' => $code,
-        //         'gross_amount' => (int) $requst->total_price
+        //         'gross_amount' => (int) $request->total_price
         //     ],
         //     'customer_details' => [
         //         'first_name' => Auth::user()->name,
@@ -107,7 +107,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function callback(Request $requst)
+    public function callback(Request $request)
     {
         // set configurasi midtrans
         Config::$serverKey = config('services.midtrans.serverKey');

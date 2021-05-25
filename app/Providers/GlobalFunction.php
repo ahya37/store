@@ -37,9 +37,10 @@ class GlobalFunction extends ServiceProvider
 
     public function point($total_price)
     {
+        
         $n = $total_price;
         $mt = 250000; // minimal transaksi
-        $np = 1000; // nilai poin
+        $np = 100; // nilai poin
         $mp = 10; // miminum poin
 
         $amountPoint = 0;
