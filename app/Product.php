@@ -9,7 +9,7 @@ class Product extends Model
 {
     
     protected $fillable = [
-        'name','users_id','top_categories_id','categories_id','price','stock','weight','profit_sharing','description','slug'
+        'name','users_id','top_categories_id','categories_id','price','stock','weight','profit_sharing','point','description','slug'
     ];
 
     protected $hidden = [];
