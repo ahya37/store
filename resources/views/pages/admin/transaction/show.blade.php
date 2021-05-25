@@ -54,14 +54,18 @@
                                 <div class="product-title">
                                     Bukti Pembayaran
                                     </div>
+                                    @if($transaction->exchange_point == 1)
+                                    Tukar Point
+                                    @else
                                     <div class="product-subtitle">
-                                    <a href="{{ Storage::url($transaction->payment->image ?? '') }}" target="_blank">
-                                        <img
-                                        src="{{ Storage::url($transaction->payment->image ?? '')}}"
-                                        style="width: 60px"
-                                        />
-                                    </a>
+                                      <a href="{{ Storage::url($transaction->payment->image ?? '') }}" target="_blank">
+                                          <img
+                                          src="{{ Storage::url($transaction->payment->image ?? '')}}"
+                                          style="width: 60px"
+                                          />
+                                      </a>
                                     </div>
+                                    @endif
                               </div>
                             </div>
                           </div>
