@@ -14,7 +14,7 @@ class AddLevelToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('access',10)->default('SUPERADMIN')->after('roles');
+            $table->string('access', 10)->default(NULL)->after('roles');
         });
     }
 
@@ -26,7 +26,7 @@ class AddLevelToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropPrimary('access');
+            $table->dropColumn('access');
         });
     }
 }
