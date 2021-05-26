@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLevelToUsers extends Migration
+class AddCreateByToPoints extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddLevelToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('access', 10)->default(NULL)->after('roles');
+        Schema::table('points', function (Blueprint $table) {
+            $table->integer('create_by')->after('amount_point');
         });
     }
 
@@ -25,8 +25,8 @@ class AddLevelToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('access');
+        Schema::table('points', function (Blueprint $table) {
+            $table->dropColumn('amount_point');
         });
     }
 }

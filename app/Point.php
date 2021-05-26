@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Point extends Model
 {
     protected $fillable = [
-        'users_id','nominal_point','amount_point'
+        'users_id','nominal_point','amount_point','create_by'
     ];
 
     protected $hidden = [];

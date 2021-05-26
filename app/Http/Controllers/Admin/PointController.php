@@ -11,9 +11,16 @@ use Illuminate\Http\Request;
 use App\Providers\GlobalFunction;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
+use App\Providers\CreateBy;
 
 class PointController extends Controller
 {
+    public function getCreate()
+    {
+        $createBy = new CreateBy();
+        $getCreateBy = $createBy->getCreateBy();
+        return $getCreateBy;
+    }
     public function index()
     {
         if (request()->ajax()) 
@@ -70,7 +77,8 @@ class PointController extends Controller
             Point::create([
                 'users_id' => $request->users_id,
                 'nominal_point' => $nominal_point,
-                'amount_point' => $amount_point
+                'amount_point' => $amount_point,
+                'create_by' => $this->getCreate()
             ]);
            
         }else{
@@ -87,7 +95,8 @@ class PointController extends Controller
             $oldpoint = Point::where('id', $point->id)->first();
             $oldpoint->update([
                 'nominal_point' =>  $nominal_point + $old_nominal,
-                'amount_point'  => $amount_point + $old_amount
+                'amount_point'  => $amount_point + $old_amount,
+                'create_by' => $this->getCreate()
             ]);
         }
 
@@ -145,6 +154,7 @@ class PointController extends Controller
                 $point->users_id = $value;
                 $point->nominal_point = $nominal_point;
                 $point->amount_point = $nominal_point * $np;
+                $point->create_by = $this->getCreate();
                 $point->save();
 
             }else{
@@ -163,7 +173,8 @@ class PointController extends Controller
 
                 $oldpoint->update([
                     'nominal_point' => $nominal_point + $old_nominal,
-                    'amount_point'  => ($nominal_point * $np) + $old_amount
+                    'amount_point'  => ($nominal_point * $np) + $old_amount,
+                    'create_by' => $this->getCreate()
                 ]);
             }
 
@@ -183,7 +194,6 @@ class PointController extends Controller
 
     public function StoreexchangePoint(Request $request, $id)
     {
-
             $users_id    = $request->input('users_id'); 
             $products_id = $request->input('products_id');
             $price       = $request->input('price');
@@ -237,7 +247,8 @@ class PointController extends Controller
                 $amount_point  = $nominal_point * 100;
                 $point->update([
                     'nominal_point' => $nominal_point,
-                    'amount_point'  => $amount_point
+                    'amount_point'  => $amount_point,
+                    'create_by' => $this->getCreate()
                 ]);
 
             }
