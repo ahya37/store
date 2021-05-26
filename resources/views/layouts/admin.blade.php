@@ -28,6 +28,7 @@
             <img src="/images/admin.png" class="my-4" style="width: 150px;" />
           </div>
           <div class="list-group list-group-flush">
+            @if (Auth::user()->access == 'SUPERADMIN')
             <a
               href="{{ route('admin-dashboard') }}"
               class="list-group-item list-group-item-action"
@@ -102,6 +103,28 @@
             >
               Sign Out
             </a>
+            @endif()
+
+            @if (Auth::user()->access == 'CS')
+              <a
+              href="{{  route('transactions.index')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/transactions*')) ? 'active' : '' }}"
+            >
+              Transaksi
+            </a>
+            <a
+              href="{{  route('point.index')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/point*')) ? 'active' : '' }}"
+            >
+              Poin
+            </a>
+            <a
+              href="{{ route('user.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }}"
+            >
+              Pelanggan
+            </a>
+            @endif
           </div>
         </div>
 

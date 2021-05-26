@@ -57,6 +57,16 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Akses</label>
+                                                <select name="access" required class="form-control">
+                                                    <option value="SUPERADMIN">Superadmin</option>
+                                                    <option value="CS">CS</option>
+                                                    <option value="MANAGER">MANAGER</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
     
                                     <div class="row">
