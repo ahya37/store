@@ -86,6 +86,12 @@
                                                 <input type="number" name="weight" class="form-control" required>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Poin</label>
+                                                <input type="number" name="point" class="form-control" required>
+                                            </div>
+                                        </div>
                                          <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Deskripsi Produk</label>
