@@ -300,7 +300,8 @@ class PointController extends Controller
 
     public function downloadFormatExcel()
     {
-        return Excel::download(new PointExport(), 'points.xls');
+        $time = time();
+        return Excel::download(new PointExport(), 'points.'.$time.'.xls');
     }
 
 }
