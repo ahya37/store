@@ -25,6 +25,9 @@
                                 <a href="{{ route('point.create') }}" class="btn btn-sm btn-primary mb-3">
                                     + Tambah Poin Baru
                                 </a>
+                                <a href="{{ route('point-excel-format-download') }}" class="btn btn-sm btn-secondary mb-3">
+                                    Download Format Excel
+                                </a>
                                 <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
                                     Upload Excel
                                 </button>

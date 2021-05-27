@@ -126,6 +126,8 @@ Route::prefix('admin')
             Route::post('point/exchange/{id}','PointController@StoreexchangePoint')->name('point-exchange-store');
             Route::get('point/exchange/history/{users_id}','PointController@historyExchangePoint')->name('point-exchange-history');
 
+            Route::get('point/excel/format/download','PointController@downloadFormatExcel')->name('point-excel-format-download');
+
 
         });
 

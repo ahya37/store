@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Point;
 use App\Product;
 use App\Transaction;
 use App\TransactionDetail;
-use Illuminate\Http\Request;
 
+use App\Providers\CreateBy;
+use App\Exports\PointExport;
+use Illuminate\Http\Request;
 use App\Providers\GlobalFunction;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
-use App\Providers\CreateBy;
 
 class PointController extends Controller
 {
@@ -293,6 +296,11 @@ class PointController extends Controller
         }
         return view('pages.admin.point.history-exchange-point');
         
+    }
+
+    public function downloadFormatExcel()
+    {
+        return Excel::download(new PointExport(), 'points.xls');
     }
 
 }

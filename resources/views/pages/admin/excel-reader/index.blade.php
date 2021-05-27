@@ -44,22 +44,22 @@
                                                         <th>No</th>
                                                         <th>ID</th>
                                                         <th>Nama</th>
-                                                        <th>Nominal</th>
+                                                        <th>Nominal Transaksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @for ($i=2; $i<=$jumlahBaris; $i++)
-                                                    @if($datapoint->val($i, 2) != null)
+                                                    @if($datapoint->val($i, 1) != null)
                                                         <tr role="row" class="odd">
                                                             <td>{{ $no++ }}</td>
-                                                            <td tabindex="0" class="sorting_1"> {{$datapoint->val($i, 2)}}
-                                                                <input type="hidden" name="users_id[]" value="{{$datapoint->val($i, 2)}}">
+                                                            <td tabindex="0" class="sorting_1"> {{$datapoint->val($i, 1)}}
+                                                                <input type="hidden" name="users_id[]" value="{{$datapoint->val($i, 1)}}">
+                                                            </td>
+                                                            <td tabindex="0" class="sorting_1">{{$datapoint->val($i, 2)}}
+                                                                <input type="hidden" name="name[]" value="{{$datapoint->val($i, 2)}}">
                                                             </td>
                                                             <td tabindex="0" class="sorting_1">{{$datapoint->val($i, 3)}}
-                                                                <input type="hidden" name="name[]" value="{{$datapoint->val($i, 3)}}">
-                                                            </td>
-                                                            <td tabindex="0" class="sorting_1">{{$datapoint->val($i, 4)}}
-                                                                <input type="hidden" name="amount[]" value="{{$datapoint->val($i, 4)}}">
+                                                                <input type="hidden" name="amount[]" value="{{$datapoint->val($i, 3)}}">
                                                             </td>
                                                         </tr>
                                                     @endif
