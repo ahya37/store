@@ -31,10 +31,9 @@
                                 <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
                                     Upload Excel
                                 </button>
-                                 <a href="{{ route('point.create') }}" class="btn btn-sm btn-danger mb-3" onclick="event.preventDefault();
-                                    document.getElementById('delete-all').submit();" >
+                                 <button class="btn btn-sm btn-danger mb-3" onclick="deteleConfirmAll();">
                                     Hapus Semua
-                                </a>
+                                </button>
                                 <form id="delete-all" action="{{ route('point-delete-all') }}" method="POST" class="d-none">
                                 @csrf
                                 </form>
@@ -112,7 +111,7 @@
             }
         ]
     });
-    
+
 function deteleConfirm(id){
 		var user = $('#'+id+'').attr("user");
 	  swal({
@@ -128,7 +127,39 @@ function deteleConfirm(id){
 			type: "GET",
 			data: {'_method' : 'DELETE'},
 			success: function(data){
-			  swal("Data berhasil dihapus!", {
+			  swal("Poin berhasil dihapus!", {
+				icon: "success",
+			  }).then(function(){
+				window.location.reload();
+			  });
+			},
+			error : function(){
+			  swal({
+				title: 'Gagal Menghapus',
+				icon:'error',
+				timer: '1500'
+			  });
+			}
+		  });
+		}
+	  });
+	}
+
+  function deteleConfirmAll(){
+	  swal({
+		title: "Hapus Semua Poin ?",
+		// text: "Setelah dihapus Anda tidak dapat mengembalikan data ini!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	  }).then((willDetele)=> {
+		if (willDetele) {
+		  $.ajax({
+			url: "{{ route('point-delete-all') }}",
+			type: "GET",
+			data: {'_method' : 'DELETE'},
+			success: function(data){
+			  swal("Poin berhasil dihapus!", {
 				icon: "success",
 			  }).then(function(){
 				window.location.reload();
