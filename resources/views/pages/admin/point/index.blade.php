@@ -31,6 +31,13 @@
                                 <button class="btn btn-sm btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
                                     Upload Excel
                                 </button>
+                                 <a href="{{ route('point.create') }}" class="btn btn-sm btn-danger mb-3" onclick="event.preventDefault();
+                                    document.getElementById('delete-all').submit();" >
+                                    Hapus Semua
+                                </a>
+                                <form id="delete-all" action="{{ route('point-delete-all') }}" method="POST" class="d-none">
+                                @csrf
+                                </form>
                                 <div class="table-responsive">
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>

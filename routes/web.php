@@ -127,7 +127,7 @@ Route::prefix('admin')
             Route::get('point/exchange/history/{users_id}','PointController@historyExchangePoint')->name('point-exchange-history');
 
             Route::get('point/excel/format/download','PointController@downloadFormatExcel')->name('point-excel-format-download');
-
+            Route::post('point/delete/all','PointController@deleteAll')->name('point-delete-all');
 
         });
 

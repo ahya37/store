@@ -304,4 +304,10 @@ class PointController extends Controller
         return Excel::download(new PointExport(), 'points-'.$time.'.xls');
     }
 
+    public function deleteAll()
+    {
+        $point = Point::truncate();
+        return redirect()->route('point.index')->with(['success' => 'Semua poin telah dihapus']);
+    }
+
 }
