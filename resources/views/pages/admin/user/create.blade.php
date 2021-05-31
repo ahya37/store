@@ -57,6 +57,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        @if (Auth::user()->access == 'SUPERADMIN')
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Akses</label>
@@ -67,6 +68,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
     
                                     <div class="row">

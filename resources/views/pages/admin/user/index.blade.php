@@ -17,9 +17,16 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
+                                @if (Auth::user()->access == 'SUPERADMIN')
                                 <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">
                                     + Tambah User Baru
                                 </a>
+                                @endif
+                                @if (Auth::user()->access == 'CS')
+                                <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">
+                                    + Tambah Pelanggan Baru
+                                </a>
+                                @endif
                                 <div class="table-responsive">
                                     @if (Auth::user()->access == 'SUPERADMIN')
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
