@@ -88,6 +88,7 @@
 @endpush
 
 @push('addon-script')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     var datatable = $('#crudTable').DataTable({
         processing: true,
@@ -111,5 +112,38 @@
             }
         ]
     });
+    
+function deteleConfirm(id){
+		var user = $('#'+id+'').attr("user");
+	  swal({
+		title: "Hapus Poin " +user+ "?",
+		// text: "Setelah dihapus Anda tidak dapat mengembalikan data ini!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	  }).then((willDetele)=> {
+		if (willDetele) {
+		  $.ajax({
+			url: "{{ url('admin/point/destroy') }}" + '/' +id,
+			type: "GET",
+			data: {'_method' : 'DELETE'},
+			success: function(data){
+			  swal("Data berhasil dihapus!", {
+				icon: "success",
+			  }).then(function(){
+				window.location.reload();
+			  });
+			},
+			error : function(){
+			  swal({
+				title: 'Gagal Menghapus',
+				icon:'error',
+				timer: '1500'
+			  });
+			}
+		  });
+		}
+	  });
+	}
 </script>    
 @endpush

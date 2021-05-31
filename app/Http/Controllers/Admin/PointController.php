@@ -43,12 +43,9 @@ class PointController extends Controller
                                       <a class="dropdown-item" href="' .route('point-exchange-history', $item->users_id). '">
                                         Histori Tukar Poin
                                      </a>
-                                     <form action="'. route('point.destroy', $item->id) .'" method="POST">
-                                         '. method_field('delete') . csrf_field() .'
-                                         <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                         </button>
-                                     </form>
+                                     <button type="button" class="dropdown-item text-danger" onclick="deteleConfirm('.$item->id.')" id="'.$item->id.'" user="'.$item->user->name.'">
+                                        Hapus
+                                     </button>
                                 </div>
                             </div>
                         </div>
@@ -306,8 +303,8 @@ class PointController extends Controller
 
     public function deleteAll()
     {
-        $point = Point::truncate();
-        return redirect()->route('point.index')->with(['success' => 'Semua poin telah dihapus']);
+        Point::truncate();
+        return redirect()->route('point.index')->with(['success' => 'Semua poin telah']);
     }
 
 }

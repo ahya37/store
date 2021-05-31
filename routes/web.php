@@ -120,6 +120,8 @@ Route::prefix('admin')
             Route::resource('report','ReportController');
             Route::resource('point','PointController');
 
+            Route::get('point/destroy/{id}','PointController@destroy');
+
             Route::post('point/excel','PointController@uploadPointExcel')->name('point-upload-excel');
             Route::post('point/excel/upload','PointController@saveExcelUploadPoint')->name('point-upload-excel-save');
             Route::get('point/exchange/{id}','PointController@exchangePoint')->name('point-exchange');
