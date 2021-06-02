@@ -76,6 +76,7 @@
                 @auth
                   <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" value="1" name="qty">
                     <button
                       type="submit" 
                       class="btn btn-success px-4 text-white btn-block mb-3">
@@ -89,11 +90,6 @@
                       Login untuk menambahkan
                   </a>
                 @endauth
-                 <a 
-                    href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
-                    class="btn btn-success px-4 text-white btn-block mb-3">
-                      Beli Via Wathsapp
-                  </a>
               </div>
             </div>
           </div>
