@@ -115,24 +115,48 @@
                   <div class="products-text">{{ $product->name }}</div>
                   <small class="products-stock">Stok: {{ $product->stock }}</small>
                   <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
-                  <div class="products-text">
-                    {{-- <a 
-                    href="{{ route('detail', $product->slug) }}"
-                    href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
-
-                    class="btn btn-success px-4 text-white btn-block">
-                      Beli
-                  </a> --}}
-                  <a 
-                    {{-- href="{{ route('detail', $product->slug) }}" --}}
-                    href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A{{ route('detail', $product->slug) }}%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian:" 
-
-                    class="btn btn-success px-4 text-white btn-block mb-4">
-                    <img src="/images/whatsapp.svg" width="20"/>
-                      Beli
-                  </a>
-                  </div>
                 </a>
+                 <div class="products-text">
+                  <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                      <button
+                        onclick="var result = document.getElementById('sst{{ $product->id}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                        class="btn btn-sm btn-secondary input-group-text"
+                        type="button"
+                      >
+                        -
+                      </button>
+                    </div>
+                    <input
+                      type="text"
+                      min="1"
+                      value="1"
+                      name="qty"
+                      id="sst{{ $product->id}}"
+                      class="form-control form-control-sm text-center"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        onclick="var result = document.getElementById('sst{{ $product->id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                        class="btn btn-sm btn-secondary input-group-text"
+                        type="button"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mt-2">
+                      <button
+                        type="submit"
+                        class="btn btn-success px-4 text-white btn-block mb-3"
+                      >
+                        Tamabah Keranjang
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             @empty
               <div class="col-12 text-center py-5" data-aos="fade-up" data-aos-delay="100">

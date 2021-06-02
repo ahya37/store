@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
     Route::post('/cart/update/min/{id}', 'CartController@updateMinus')->name('cart-update-min');
 
-    Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+    // Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+    Route::post('/checkout', 'CheckoutController@processOrderToWhatsApp')->name('checkout');
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

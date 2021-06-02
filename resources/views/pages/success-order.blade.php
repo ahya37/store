@@ -17,7 +17,7 @@
               @endif
               <div>
                 <a href="{{ route('dashboard') }}" class="btn btn-success w-50 mt-4"
-                  >Lanjut Pembayaran</a
+                  >Lihat Pesanan</a
                 >
               </div>
             </div>

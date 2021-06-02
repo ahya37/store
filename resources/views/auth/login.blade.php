@@ -12,6 +12,11 @@
               />
             </div> --}}
             <div class="col-lg-5">
+               @if (Session::has('error'))
+                            <div class="alert alert-danger">
+                                <p>{{ Session::get('error') }}</p>
+                            </div>
+                @endif
               <h2>
                 Belanja kebutuhan utama, <br />
                 menjadi lebih mudah

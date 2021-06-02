@@ -101,9 +101,84 @@
                 </table>
                 </div>
             </div>
-            
-            {{-- <form action="{{ route('checkout') }}" method="POST" enctype="multipart/form-data" id="locations"> --}}
-                
+            <div class="row" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-12">
+                <hr />
+                </div>
+                <div class="col-12">
+                <h2 class="mb-4">Shipping Details</h2>
+                </div>
+            </div>
+            <form action="{{ route('checkout') }}" method="POST" enctype="multipart/form-data" id="locations">
+                @csrf
+                <input type="hidden" name="total_price" value="{{ $totalPrice }}">
+                <div class="row mb-2" data-aos="fade-up" data-aos-delay="200" id="locations">
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="provinces_id">Provinsi</label>
+                    <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                        <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                    </select>
+                    <select v-else class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="regencies_id">Kab / Kota</label>
+                    <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                        <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="zip_code">Kode Pos</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="zip_code"
+                        name="zip_code"
+                        value="{{ $cart->user->zip_code ?? '' }}"
+                    />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="country">Negara</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="country"
+                        name="country"
+                        value="Indonesia"
+                    />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="address_one">Alamat Lengkap</label>
+                    <textarea
+                        class="form-control"
+                        id="address_one"
+                        name="address_one"
+                    >
+                    {{ $cart->user->address_one ?? '' }}
+                    </textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="phone_number">No. Hp</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="phone_number"
+                        name="phone_number"
+                        value="{{ $cart->user->phone_number ?? ''}}"
+                    />
+                    </div>
+                </div>
+                </div>
                 <div class="row" data-aos="fade-up" data-aos-delay="150">
                 <div class="col-12">
                     <hr />
@@ -114,28 +189,31 @@
                 </div>
                 <div class="row" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-4 col-md-2">
-                   
+                    {{-- <div class="product-title">$0</div>
+                    <div class="product-subtitle">Country Tax</div> --}}
                 </div>
                 <div class="col-4 col-md-3">
-                   
+                    {{-- <div class="product-title">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
+                    <div class="product-subtitle">Total</div> --}}
                 </div>
                 <div class="col-4 col-md-2">
-                   
+                    {{-- <div class="product-title">Rp 15.000</div>
+                    <div class="product-subtitle">Ongkir</div> --}}
                 </div>
                 <div class="col-4 col-md-2">
                     <div class="product-title text-success">Rp {{ $globalFunction->formatRupiah($totalPrice) }}</div>
-                    <div class="product-subtitle">Total</div>
+                    <div class="product-subtitle">Total Pembayaran</div>
                 </div>
                 <div class="col-8 col-md-3">
-                    <a target="_blank"
-                   href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20pesan%20dengan%20produk :%0A @foreach ($carts as $item ){{'-'.$item->product->name }}[{{'Qty: ' .$item->qty }}],%0A @endforeach %0A%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian"
+                    <button
+                    type="submit"
                     class="btn btn-success mt-4 px-4 btn-block"
                     >
-                    Checkout
-                    </a>
+                    Pesan
+                    </button>
                 </div>
                 </div>
-            {{-- </form> --}}
+            </form>
             </div>
         </section>
         </div>
@@ -181,13 +259,5 @@
                 },
             }
         });
-
-    </script>
-    <script>
-        
-        function myFunction() {
-                location.replace("https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian")
-            
-        }
     </script>
     @endpush

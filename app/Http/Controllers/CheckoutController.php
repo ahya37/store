@@ -7,6 +7,7 @@ use Auth;
 
 use App\Cart;
 use App\Point;
+use App\Product;
 use App\Transaction;
 use App\TransactionDetail;
 use App\Providers\GlobalFunction;
@@ -64,7 +65,8 @@ class CheckoutController extends Controller
             $point = Point::create([
                 'users_id' => Auth::user()->id,
                 'nominal_point' => $nominal_point,
-                'amount_point'  => $amount_point
+                'amount_point'  => $amount_point,
+                'create_by' => Auth::user()->id,
             ]);
         }
 
@@ -106,6 +108,15 @@ class CheckoutController extends Controller
         return $this->successOrder($point);
 
     }
+
+    public function processOrderToWhatsApp(Request $request)
+    {
+
+       $item = 'barang';
+       return  header("Location: https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A'.$item.'%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian", true, 301);exit();
+
+    }
+
 
     public function callback(Request $request)
     {

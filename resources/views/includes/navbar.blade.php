@@ -14,6 +14,22 @@
         >
           <span class="navbar-toggler-icon"> </span>
         </button>
+         <div>
+          <form class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Cari Produk"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2"
+                  ><i class="fa fa-search" aria-hidden="true"></i
+                ></span>
+              </div>
+            </div>
+          </form>
+        </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
