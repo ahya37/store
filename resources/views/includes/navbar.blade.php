@@ -15,11 +15,13 @@
           <span class="navbar-toggler-icon"> </span>
         </button>
          <div>
-          <form class="form-inline my-2 my-lg-0">
+          <form action="{{ route('search-product') }}" method="POST" class="form-inline my-2 my-lg-0">
+            @csrf
             <div class="input-group">
               <input
                 type="text"
                 class="form-control"
+                name="q"
                 placeholder="Cari Produk"
               />
               <div class="input-group-append">

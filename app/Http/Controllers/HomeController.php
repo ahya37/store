@@ -21,4 +21,14 @@ class HomeController extends Controller
         $globalFunction = app('GlobalFunction');
         return view('pages.home', compact('categories','products','globalFunction'));
     }
+
+    public function products(Request $request)
+    {
+        $q = $request->q;
+        $products   = Product::with(['galleries'])->where('name','LIKE','%'.$q.'%')->inRandomOrder()->take(20)->get();
+
+        $globalFunction = app('GlobalFunction');
+        return view('pages.products', compact('products','globalFunction'));
+    }
+
 }

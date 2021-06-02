@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/search/products', 'HomeController@products')->name('search-product');
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-detail');
@@ -28,6 +29,7 @@ Route::get('/success', 'CartController@success')->name('success');
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
 Route::get('/promotion', 'PromotionController@index')->name('promotion');
+
 
 
 
