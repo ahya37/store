@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-8 col-md-3">
                     <a target="_blank"
-                   href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20pesan%20produk :%0A @foreach ($carts as $item ){{'-'.$item->product->name }}[{{'Qty: ' .$item->qty }}],%0A @endforeach %0A%0A%0A*Form Pemesan*%0ANama:{{ Auth::user()->name }}%0AAlamat:%0ATelp:{{ Auth::user()->phone_number }}%0ATotal:Rp.%20{{ $globalFunction->formatRupiah($totalPrice) }} "
+                   href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20pesan%20produk :%0A @foreach ($carts as $item ){{'-'.$item->product->name }}[{{'Qty: ' .$item->qty }}],%0A @endforeach %0A*Form Pemesan*%0ANama:{{ Auth::user()->name }}%0AAlamat:%0ATelp:{{ Auth::user()->phone_number }}%0ATotal:Rp.%20{{ $globalFunction->formatRupiah($totalPrice) }} "
                     class="btn btn-success mt-4 px-4 btn-block"
                     >
                     Pesan
