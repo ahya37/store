@@ -131,7 +131,7 @@
                    href="https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20pesan%20dengan%20produk :%0A @foreach ($carts as $item ){{'-'.$item->product->name }}[{{'Qty: ' .$item->qty }}],%0A @endforeach %0A%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian"
                     class="btn btn-success mt-4 px-4 btn-block"
                     >
-                    Checkout
+                    Pesan
                     </a>
                 </div>
                 </div>
