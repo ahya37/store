@@ -112,8 +112,23 @@ class CheckoutController extends Controller
     public function processOrderToWhatsApp(Request $request)
     {
 
-       $item = 'barang';
-       return  header("Location: https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20berminat%20dengan%20produk :%0A%0A'.$item.'%0A%0A*Form Pemesan*%0ANama:%0AAlamat:%0ATelp:%0AJumlah Pembelian", true, 301);exit();
+       $carts = Cart::with(['product','user'])->where('users_id', Auth::user()->id)->get();
+       $waUrl = '';
+       $items = '';
+       $total = collect($carts)->sum(function($q){
+           return $q->product['price'] * $q['qty'];
+       });
+
+       foreach ($carts as $item) {
+           $items .= '-'.$item->product->name.'[ Qty: '.$item->qty.' ]'.', ';
+       }
+        
+        $globalFunction = app('GlobalFunction');
+        $waUrl  = "https://api.whatsapp.com/send?phone=6287872413014&text=Halo%20CS%20Percikanshop,%20saya%20pesan%20produk :%0A".$items."%0A%0ATotal:Rp. %20".$globalFunction->formatRupiah($total)."%0A%0A*Form Pemesan*%0ANama:".Auth::user()->name."%0AAlamat: ".Auth::user()->address_one."%0ATelp: ".Auth::user()->phone_number."";
+        // delete cart data
+        Cart::where('users_id', Auth::user()->id)->delete();
+        
+        return redirect($waUrl);
 
     }
 
