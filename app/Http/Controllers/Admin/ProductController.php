@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Product;
 use App\User;
+use App\Product;
 use App\Category;
-
-use App\Http\Requests\Admin\ProductRequest;
-use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Http\Requests\Admin\UserRequest;
+use Illuminate\Support\Facades\Response;
+use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Admin\ProductRequest;
+use App\TopCategory;
 
 class ProductController extends Controller
 {
@@ -142,4 +141,84 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
     }
+
+    public function downloadFormatExcel()
+    {
+        $path = public_path('fileformat/products.xls');
+        return Response::download($path);
+
+    }
+
+    public function uploadProductExcel(Request $request)
+    {
+        include app_path('Providers/ExcelReader.php');
+
+        $jumlahBaris = $jumlah_baris;
+        $datapoint   = $data;
+        $countData   = 0;
+        $no          = 1;
+
+        $top_categories = '';
+        for ($i=2; $i <= $jumlahBaris ; $i++) { 
+            if ($datapoint->val($i, 2) != null) {
+                $countData += count(array($i));
+            }
+            // $datapoint->val($i, 1) adalah nama
+            $top_categories = TopCategory::where('name', $datapoint->val($i, 3))->first();
+            $categories = Category::where('name', $datapoint->val($i, 4))->first();
+
+            if (empty($top_categories)) {
+               return redirect()->back()->with(['error' => 'Data Kategori atau Sub Kategori ada yang tidak sesuai, periksa kembali!']);
+            }
+            if (empty($categories)) {
+               return redirect()->back()->with(['error' => 'Data Kategori atau Sub Kategori ada yang tidak sesuai, periksa kembali!']);
+            }
+        }
+        
+        $countData       = $countData;
+        return view('pages.admin.excel-reader.product', compact('no','jumlahBaris','datapoint','countData'));
+    }
+
+    public function saveExcelUploadPoint(Request $request)
+    {
+        ini_set('max_input_vars','1000');
+
+        $name = $request->input('name');
+        $users_id = $request->input('users_id');
+        $top_categories_id = $request->input('top_categories_id');
+        $categories_id = $request->input('categories_id');
+        $price = $request->input('price');
+        $stock = $request->input('stock');
+        $weight = $request->input('weight');
+        $profit_sharing = $request->input('profit_sharing');
+        $point = $request->input('point');
+        $description = $request->input('description');
+        
+        foreach ($name as $key => $value) {
+            // pemilik berdasarkan nama yang dimasukan
+            $users          = User::select('id')->where('name', $users_id[$key])->first();
+            $top_category   = TopCategory::select('id','name')->where('name', $top_categories_id[$key])->first();
+            $category       = Category::select('id')->where('name', $categories_id[$key])->first();
+
+                // simpan produk
+                $product = new Product();
+                $product->name = $value;
+                $product->users_id = $users->id;
+                $product->top_categories_id = $top_category->id;
+                $product->categories_id = $category->id;
+                $product->price = $price[$key];
+                $product->stock = $stock[$key];
+                $product->weight = $weight[$key];
+                $product->profit_sharing = $profit_sharing[$key];
+                $product->point = $point[$key];
+                $product->description = $description[$key];
+                $product->slug = Str::slug($value);
+                $product->save();
+
+        }
+        return redirect()->route('product.index')->with(['success' => 'Produk telah disimpan']);
+
+    }
+    
+
 }
