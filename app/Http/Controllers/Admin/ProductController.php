@@ -166,12 +166,16 @@ class ProductController extends Controller
             // $datapoint->val($i, 1) adalah nama
             $top_categories = TopCategory::where('name', $datapoint->val($i, 3))->first();
             $categories = Category::where('name', $datapoint->val($i, 4))->first();
+            $users = User::where('name', $datapoint->val($i, 2))->first();
 
             if (empty($top_categories)) {
                return redirect()->back()->with(['error' => 'Data Kategori atau Sub Kategori ada yang tidak sesuai, periksa kembali!']);
             }
             if (empty($categories)) {
                return redirect()->back()->with(['error' => 'Data Kategori atau Sub Kategori ada yang tidak sesuai, periksa kembali!']);
+            }
+            if (empty($users)) {
+               return redirect()->back()->with(['error' => 'Data Pemilik ada yang tidak sesuai, periksa kembali!']);
             }
         }
         
