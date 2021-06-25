@@ -19,6 +19,50 @@
   </head>
 
   <body>
+     <nav
+      class="navbar navbar-dark bg-success navbar-expand fixed-bottom d-md-none d-lg-none d-xl-none"
+    >
+      <ul class="navbar-nav nav-justified w-100">
+        <li class="nav-item">
+          <a href="{{ route('home') }}" class="nav-link">
+            <img src="/images/home.svg" width="20" />
+            <br>
+            <small style="color: white">Home</small>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('categories') }}" class="nav-link">
+            <img src="/images/category.svg" width="20" /> <br>
+            <small style="color: white">Kategori</small>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('promotion') }}" class="nav-link">
+            <img src="/images/promo.svg" width="20" />
+             <br>
+            <small style="color: white">Promo</small>
+          </a>
+        </li>
+        @guest
+        <li class="nav-item">
+          <a href="{{ route('login') }}" class="nav-link">
+            <img src="/images/user.svg" width="20" />
+             <br>
+            <small style="color: white">Login</small>
+          </a>
+        </li>          
+        @endguest
+        @auth
+           <li class="nav-item">
+          <a href="{{ route('register') }}" class="nav-link">
+            <img src="/images/user.svg" width="20" />
+             <br>
+            <small style="color: white">Akun</small>
+          </a>
+        </li> 
+        @endauth
+      </ul>
+</nav>
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
         <!-- Sidebae -->
@@ -90,14 +134,6 @@
               >
                 &laquo; Menu
               </button>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-              >
-                <span class="navbar-toggler-icon"> </span>
-              </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- desktop menu -->
                 <ul class="navbar-nav d-none d-lg-flex ml-auto">
@@ -168,10 +204,6 @@
         </div>
       </div>
     </div>
-
-
-
-
    @stack('prepend-script')
     <script src="/vendor/jquery/jquery.slim.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

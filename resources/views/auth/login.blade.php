@@ -5,12 +5,6 @@
       <div class="section-store-auth" data-aos="fade-up">
         <div class="container">
           <div class="row align-items-center justify-content-center row-login">
-            {{-- <div class="col-lg-6 text-center">
-              <img
-                src="/images/login-placeholder.png"
-                class="w-50 mb-4 mb-lg-none"
-              />
-            </div> --}}
             <div class="col-lg-5">
                @if (Session::has('error'))
                             <div class="alert alert-danger">
@@ -49,9 +43,9 @@
                 </button>
                 <a
                   href="{{ route('register') }}"
-                  class="btn btn-signup btn-block w-75 mt-4"
+                  class="btn btn-secondary btn-block w-75 mt-4"
                 >
-                  Sign Up
+                  Daftar
                 </a>
               </form>
             </div>
