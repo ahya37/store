@@ -19,7 +19,9 @@
         <li class="nav-item">
           <a href="{{ route('promotion') }}" class="nav-link">
             <img src="/images/promo.svg" width="20" />
-            <span class="badge badge-warning">{{ $notif_promotion }}</span> 
+            @if ($notif_promotion != 0)
+              <span class="badge badge-warning">{{ $notif_promotion }}</span> 
+            @endif
              <br>
             <small style="color: white">Promo</small>
           </a>
@@ -29,7 +31,7 @@
           <a href="{{ route('login') }}" class="nav-link">
             <img src="/images/user.svg" width="20" />
              <br>
-            <small style="color: white">Login</small>
+            <small style="color: white">Akun</small>
           </a>
         </li>          
         @endguest
