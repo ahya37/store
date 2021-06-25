@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Promotion;
 
 class GlobalFunction extends ServiceProvider
 {
@@ -49,5 +50,12 @@ class GlobalFunction extends ServiceProvider
 
         $dataPoint = ['nominalPoint' => $nominalPoint,'amountPoint' => $amountPoint];
         return $dataPoint;
+    }
+
+    public function promotion()
+    {
+        $promotion = Promotion::all();
+        $count_promotion = count($promotion);
+        return $count_promotion;
     }
 }

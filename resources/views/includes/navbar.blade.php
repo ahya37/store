@@ -11,13 +11,15 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('categories') }}" class="nav-link">
-            <img src="/images/category.svg" width="20" /> <br>
+            <img src="/images/category.svg" width="20" />
+            <br>
             <small style="color: white">Kategori</small>
           </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('promotion') }}" class="nav-link">
             <img src="/images/promo.svg" width="20" />
+            <span class="badge badge-warning">{{ $notif_promotion }}</span> 
              <br>
             <small style="color: white">Promo</small>
           </a>
