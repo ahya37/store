@@ -9,10 +9,10 @@
       <section class="store-carousel">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12" data-aos="zoom-in">
+            <div class="col-lg-12 mt-4" data-aos="zoom-in">
               <div
                 id="storeCarousel"
-                class="carousel slide"
+                class="carousel slide mt-4"
                 data-ride="carousel"
               >
                 <ol class="carousel-indicators">
