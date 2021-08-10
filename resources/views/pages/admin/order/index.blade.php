@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Tambah Orderan
+    Antrian Orderan
 @endsection
 
 @section('content')
