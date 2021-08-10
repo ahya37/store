@@ -1,20 +1,21 @@
 @extends('layouts.admin')
 
 @section('title')
-    User
+    Tambah Orderan
 @endsection
 
 @section('content')
  <!-- Section Content -->
-<div class="section-content section-dashboard-home" data-aos="fade-up">
-    <div class="container-fluid">
-        <div class="dashboard-heading">
-                <h2 class="dashboard-title">User</h2>
-                <p class="dashboard-subtitle">Create New User</p>
-              </div>
-              <div class="dashboard-content">
+ <div class="section-content section-dashboard-home" data-aos="fade-up">
+     <div class="container-fluid">
+         <div class="dashboard-heading">
+             <h2 class="dashboard-title">Tambah Orderan</h2>
+             <p class="dashboard-subtitle"></p>
+            </div>
+            <div class="dashboard-content mt-4">
+                  @include('layouts.message')
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -26,55 +27,54 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
     
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Nama</label>
+                                                <label>Tanggal</label>
+                                                <input type="date" value="{{ date('Y-m-d') }}" name="date" class="form-control" required>
+                                            </div>
+                                        </div>
+                                         <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Nama Pemesan</label>
                                                 <input type="text" name="name" class="form-control" required>
                                             </div>
                                         </div>
-                                         <div class="col-md-12">
+                                        <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="email" name="email" class="form-control" required>
+                                                <label>No. Hp</label>
+                                                <input type="number" name="phone_number" class="form-control" required>
                                             </div>
                                         </div>
                                          <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="password" name="password" class="form-control" required>
+                                                <label>Alamat Pengiriman</label>
+                                                <textarea class="form-control" name="address" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Roles</label>
-                                                <select name="roles" required class="form-control">
-                                                    <option value="ADMIN">Admin</option>
-                                                    <option value="USER">User</option>
+                                                <label>Metode Pembayaran</label>
+                                                <select name="payment_metode" required class="form-control">
+                                                    <option value="COD">COD</option>
+                                                    <option value="TF">Transfer</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        @if (Auth::user()->access == 'SUPERADMIN')
-                                        <div class="col-md-12">
+                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Akses</label>
-                                                <select name="access" required class="form-control">
-                                                    <option value="SUPERADMIN">Superadmin</option>
-                                                    <option value="CS">CS</option>
-                                                    <option value="MANAGER">MANAGER</option>
-                                                    <option value="EMPLOY">EMPLOY</option>
-                                                </select>
+                                                <label>Deskripsi Pesanan</label>
+                                                <textarea class="form-control" name="description_order" placeholder="Tuliskan pesanannya disini" required></textarea>
                                             </div>
                                         </div>
-                                        @endif
                                     </div>
     
                                     <div class="row">
                                        <div class="col text-right">
-                                           <button type="submit" class="btn btn-success px-5">Save Now</button>
+                                           <button type="submit" class="btn btn-success px-5">Simpan</button>
                                        </div>
                                     </div>
                                 </form>

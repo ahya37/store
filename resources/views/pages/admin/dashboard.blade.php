@@ -9,9 +9,14 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-                <h2 class="dashboard-title">Admin Dashboard</h2>
-                <p class="dashboard-subtitle">Administrator Panel</p>
-              </div>
+          @if (Auth::user()->access == 'EMPLOY')
+              <h2 class="dashboard-title">Admin </h2>
+              <p class="dashboard-subtitle">Antrian Orderan</p>
+            </div>
+          @else
+              <h2 class="dashboard-title">Admin </h2>
+              <p class="dashboard-subtitle">Administrator Panel</p>
+            </div>
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-md-4">
@@ -40,6 +45,7 @@
                   </div>
                 </div>
               </div>
+              @endif
     </div>
 </div>
 @endsection

@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'name' => 'required|string|max:50',
             'email' => 'required|email|unique:users',
             'roles' => 'nullable|string|in:ADMIN,USER',
-            'access' => 'nullable|string|in:SUPERADMIN,CS,MANAGER'
+            'access' => 'nullable|string|in:SUPERADMIN,CS,MANAGER,EMPLOY'
         ];
     }
 }

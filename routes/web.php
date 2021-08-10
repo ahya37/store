@@ -118,6 +118,8 @@ Route::prefix('admin')
             Route::resource('submissionidcard', 'SubmissionIdcardController');
             Route::resource('promotion', 'PromotionController');
 
+            Route::resource('order','OrderController');
+
             Route::get('product/excel/format/download','ProductController@downloadFormatExcel')->name('product-excel-format-download');
             Route::post('product/upload','ProductController@uploadProductExcel')->name('product.uploadProductExcel');
             Route::post('product/excel/upload','ProductController@saveExcelUploadPoint')->name('product-upload-excel-save');

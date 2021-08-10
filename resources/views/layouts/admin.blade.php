@@ -124,6 +124,32 @@
             >
               Pelanggan
             </a>
+             <a
+              href="{{  route('order.create')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/order/create')) ? 'active' : '' }}"
+            >
+              Tambah Orderan
+            </a>
+            <a
+              href="{{ route('order.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/order')) ? 'active' : '' }}"
+            >
+              Antrian Orderan
+            </a>
+            @endif
+            @if (Auth::user()->access == 'EMPLOY')
+              <a
+              href="{{  route('order.create')  }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/order/create')) ? 'active' : '' }}"
+            >
+              Tambah Orderan
+            </a>
+            <a
+              href="{{ route('order.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/order')) ? 'active' : '' }}"
+            >
+              Antrian Orderan
+            </a>
             @endif
           </div>
         </div>
