@@ -30,14 +30,28 @@
                                 <form action="{{ route('order.index') }}" method="GET">
                                 <div class="row">
                                         @csrf
-                                        <div class="col-6">
-                                            <input name="date" type="date" class="form-control">
+                                        <div class="col-3">
+                                            <input name="start" required type="date" class="form-control">
                                         </div>
-                                        <div class="col-6">
+                                         <div class="col-3">
+                                            <input name="end" required type="date" class="form-control">
+                                        </div>
+                                        <div class="col-3">
                                             <button
                                             type="submit"
-                                            class="btn btn-success"
+                                            name="submit"
+                                            value="filter"
+                                            class="btn btn-info"
                                             >Tampilkan</
+                                            >
+                                        </div>
+                                        <div class="col-3">
+                                            <button
+                                            type="submit"
+                                            name="submit"
+                                            value="export"
+                                            class="btn btn-success"
+                                            >Excel</
                                             >
                                         </div>
                                     </div>
