@@ -72,7 +72,7 @@
                                         src="{{ asset('images/new-order.svg') }}"
                                         class="w-100 mb-2"
                                     />
-                                    <div class="product-title">{{ $item->name }}</div>
+                                    <div class="product-title text-center">{{ $item->name }}</div>
                                     <div class="product-category"></div>
                                     </div>
                                 </a>
