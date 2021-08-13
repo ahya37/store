@@ -109,23 +109,49 @@
         </button>
       </div>
       <div class="modal-body">
-          <table>
-              <tr>
-                  <td>Tanggal</td><td>:</td><td>{{ date('d-m-Y', strtotime($item->date)) }}</td>
-              </tr>
-              <tr>
-                  <td>No.Hp</td><td>:</td><td>{{ $item->phone_number }}</td>
-              </tr>
-              <tr>
-                  <td>Metode Pembayaran</td><td>:</td><td>{{ $item->payment_metode }}</td>
-                </tr>
-                <tr>
-                    <td>Alamat</td><td>:</td><td>{{ $item->address }}</td>
-                </tr>
-                <tr>
-                    <td>Deskripsi Orderan</td><td>:</td><td>{{ $item->description_order }}</td>
-                </tr>
-          </table>
+          <div class="alert alert-success">
+              <div>
+                  <div class="product-title">
+                      <h6>
+                          Tanggal
+                      </h6>
+                    </div>
+                 <div class="product-subtitle">{{ date('d-m-Y', strtotime($item->date)) }}</div>
+              </div>
+              <div class="mt-4">
+                  <div class="product-title">
+                      <h6>
+                          No.Hp
+                      </h6>
+                    </div>
+                 <div class="product-subtitle">{{ $item->phone_number }}</div>
+              </div>
+              <div class="mt-4">
+                  <div class="product-title">
+                      <h6>
+                          Metode Pembayaran
+                      </h6>
+                    </div>
+                 <div class="product-subtitle">{{ $item->payment_metode }}</div>
+              </div>
+              <div class="mt-4">
+                  <div class="product-title">
+                      <h6>
+                          Alamat Pengiriman
+                      </h6>
+                    </div>
+                 <div class="product-subtitle">{{ $item->address }}</div>
+              </div>
+              
+              <div class="mt-4">
+                  <div class="product-title">
+                      <h6>
+                          Deskripsi Orderan
+                      </h6>
+                    </div>
+                 <div class="product-subtitle">{{ $item->description_order }}</div>
+              </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
