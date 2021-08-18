@@ -151,53 +151,72 @@
                     </div>
                  <div class="product-subtitle">{{ $item->description_order }}</div>
               </div>
-               <div class="mt-4 d-none">
-                 <div class="">
-<textarea id="myInput{{ $item->id }}">
-Orderan:
+          </div>
 
+          <div class="alert alert-warning">
+              <div class="mt-4">
+                 <div class="product-title">
+                     <h6>
+                          Copy Order
+                      </h6>
+                 </div>
+                     <div class="product-subtitle">
+<textarea id="content{{ $item->id }}" class="form-control col-md-12">
+Orderan:
+                     
 Nama
 {{ $item->name }}
-
+                     
 Tanggal 
 {{ date('d-m-Y', strtotime($item->date)) }}
-
+                     
 Telpon
 {{ $item->phone_number }}
-
+                     
 Metode Pembayaran
 {{ $item->payment_metode }}
-
+                     
 Alamat
 {{ $item->address }}
-
+                     
 Deskripsi Orderan
 {{ $item->description_order }}
-</textarea>
+</textarea>         
                  </div>
               </div>
           </div>
       </div>
+      {{-- <input  value="https://ac.me/qmE_jpnYXFo"> --}}
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="{{ $item->id }}" onclick="myFunction({{ $item->id }})" cust="{{ $item->name }}">Copy</button>
+        <button class="btn btn-primary" id="copy{{ $item->id }}" cust="{{ $item->name }}" data-clipboard-target="#content{{ $item->id }}" onclick="copy({{ $item->id }})">Copy Order</button>
+        {{-- <button type="button" class="btn btn-primary" id="{{ $item->id }}" onclick="myFunction({{ $item->id }})" cust="{{ $item->name }}">Copy</button> --}}
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div> 
 @endforeach
+@endpush
+@push('addon-script')
+<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
 <script>
-    function myFunction(id) {
-    /* Get the text field */
-    var name     =  $('#'+id+'').attr('cust');
-    var copyText = document.getElementById("myInput"+id);
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
-    /* Copy the text inside the text field */
-    navigator.clipboard.writeText(copyText.value);
-    /* Alert the copied text */
-    alert("Copy :" + name);
-    }
+    function copy(id){
+        var name = $('#copy'+id+'').attr('cust');
+        new Clipboard('#copy'+id);
+        // alert("Copy :"+ name);
+    };
+
+    // function myFunction(id) {
+    // /* Get the text field */
+    // var name     =  $('#'+id+'').attr('cust');
+    // var copyText = document.getElementById("myInput"+id);
+    // /* Select the text field */
+    // copyText.select();
+    // copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    // /* Copy the text inside the text field */
+    //  document.execCommand("copy");
+    // /* Alert the copied text */
+    // alert("Copy :" + name);
+    // }
 </script>
 @endpush
