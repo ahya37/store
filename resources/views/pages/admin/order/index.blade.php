@@ -151,14 +151,53 @@
                     </div>
                  <div class="product-subtitle">{{ $item->description_order }}</div>
               </div>
+               <div class="mt-4 d-none">
+                 <div class="product-subtitle">
+                     <textarea id="myInput{{ $item->id }}">
+                        Orderan:
+
+                        Tanggal 
+                        {{ date('d-m-Y', strtotime($item->date)) }}
+
+                        Telpon
+                        {{ $item->phone_number }}
+
+                        Metode Pembayaran
+                        {{ $item->payment_metode }}
+
+                        Alamat
+                        {{ $item->address }}
+
+                        Deskripsi Orderan
+                        {{ $item->description_order }}
+                     </textarea>
+                 </div>
+              </div>
           </div>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="{{ $item->id }}" onclick="myFunction({{ $item->id }})" cust="{{ $item->name }}">Copy</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        {{-- <button type="button" class="btn btn-primary">Selesai</button> --}}
       </div>
     </div>
   </div>
 </div> 
 @endforeach
+@endpush
+
+@push('addon-script')
+<script>
+    function myFunction(id) {
+    /* Get the text field */
+    var name     =  $('#'+id+'').attr("cust");
+    var copyText = document.getElementById("myInput"+id);
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.value);
+    /* Alert the copied text */
+    alert("Copy :" + name);
+    }
+</script>
 @endpush
