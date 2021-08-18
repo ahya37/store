@@ -186,9 +186,6 @@ Deskripsi Orderan
   </div>
 </div> 
 @endforeach
-@endpush
-
-@push('addon-script')
 <script>
     function myFunction(id) {
     /* Get the text field */
