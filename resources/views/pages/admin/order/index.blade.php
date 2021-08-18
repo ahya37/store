@@ -152,25 +152,28 @@
                  <div class="product-subtitle">{{ $item->description_order }}</div>
               </div>
                <div class="mt-4 d-none">
-                 <div class="product-subtitle">
-                     <textarea id="myInput{{ $item->id }}">
-                        Orderan:
+                 <div class="">
+<textarea id="myInput{{ $item->id }}">
+Orderan:
 
-                        Tanggal 
-                        {{ date('d-m-Y', strtotime($item->date)) }}
+Nama
+{{ $item->name }}
 
-                        Telpon
-                        {{ $item->phone_number }}
+Tanggal 
+{{ date('d-m-Y', strtotime($item->date)) }}
 
-                        Metode Pembayaran
-                        {{ $item->payment_metode }}
+Telpon
+{{ $item->phone_number }}
 
-                        Alamat
-                        {{ $item->address }}
+Metode Pembayaran
+{{ $item->payment_metode }}
 
-                        Deskripsi Orderan
-                        {{ $item->description_order }}
-                     </textarea>
+Alamat
+{{ $item->address }}
+
+Deskripsi Orderan
+{{ $item->description_order }}
+</textarea>
                  </div>
               </div>
           </div>
@@ -189,7 +192,7 @@
 <script>
     function myFunction(id) {
     /* Get the text field */
-    var name     =  $('#'+id+'').attr("cust");
+    var name     =  $('#'+id+'').attr('cust');
     var copyText = document.getElementById("myInput"+id);
     /* Select the text field */
     copyText.select();
