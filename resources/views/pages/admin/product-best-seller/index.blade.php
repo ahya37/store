@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Product Promotion
+    Product Best Seller
 @endsection
 
 @section('content')
@@ -9,23 +9,20 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-                <h2 class="dashboard-title">Produk Promo</h2>
-                <p class="dashboard-subtitle">Daftaf Produk Promo</p>
+                <h2 class="dashboard-title">Produk Best Seller</h2>
+                <p class="dashboard-subtitle">Daftaf Produk Best Seller</p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
                     <div class="col-md-12">
+                        @include('layouts.message')
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ route('promotion.create') }}" class="btn btn-primary mb-3">
-                                    + Tambah Produk Promo Baru
-                                </a>
                                 <div class="table-responsive">
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
                                             <tr>
                                                 <th>Produk</th>
-                                                <th>Harga</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -51,7 +48,6 @@
         },
         columns:[
             {data: 'product.name', name:'product.name'},
-            {data: 'price', name:'price'},
             {
                 data: 'action', 
                 name:'action',

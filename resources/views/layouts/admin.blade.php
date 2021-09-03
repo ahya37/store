@@ -47,6 +47,12 @@
             >
               Promosi
             </a>
+             <a
+              href="{{ route('product-bestseller') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/product/bestseller*')) ? 'active' : '' }}"
+            >
+              Best Seller
+            </a>
             <a
               href="{{ route('product-gallery.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"

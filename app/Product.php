@@ -24,6 +24,11 @@ class Product extends Model
         return $this->hasOne(User::class,'id','users_id');
     }
 
+    public function bestSeller()
+    {
+        return $this->hasOne(BestSeller::class,'product_id','id');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class,'categories_id','id');

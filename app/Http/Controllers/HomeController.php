@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BestSeller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
@@ -16,7 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::take(6)->get();
-        $products   = Product::with(['galleries'])->inRandomOrder()->take(20)->get();
+        // $products   = Product::inRandomOrder()->take(20)->get();
+        $products = BestSeller::with('product')->get();
 
         $globalFunction = app('GlobalFunction');
         return view('pages.home', compact('categories','products','globalFunction'));

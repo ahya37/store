@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\BestSeller;
 use App\User;
 use App\Product;
 use App\Category;
@@ -25,7 +26,7 @@ class ProductController extends Controller
     {
         if (request()->ajax()) 
         {
-            $query = Product::with(['user','category']);
+            $query = Product::with(['user','category','bestSeller']);
 
             return Datatables::of($query)
                 ->addColumn('action', function($item){
@@ -36,6 +37,9 @@ class ProductController extends Controller
                                 <div class="dropdown-menu">
                                      <a class="dropdown-item" href="' .route('product.edit', $item->id). '">
                                         Edit
+                                     </a>
+                                      <a class="dropdown-item" href="' .route('product-bestseller-save', $item->id). '">
+                                        Jadikan Best Seller
                                      </a>
                                      <form action="'. route('product.destroy', $item->id) .'" method="POST">
                                          '. method_field('delete') . csrf_field() .'
@@ -48,7 +52,12 @@ class ProductController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['action'])
+                ->addColumn('bestseller', function($item){
+                    if ($item->bestSeller != null) {
+                        return '<i class="fas fa-check"></i>';
+                    }
+                })
+                ->rawColumns(['action','bestseller'])
                 ->make();
         }
         return view('pages.admin.product.index');
@@ -223,6 +232,57 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with(['success' => 'Produk telah disimpan']);
 
     }
-    
+
+    public function productBestSeller()
+    {
+        if (request()->ajax()) 
+        {
+            $query = BestSeller::with(['product'])->get();
+
+            return Datatables::of($query)
+                ->addColumn('action', function($item){
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" type="button" data-toggle="dropdown">Aksi</button>
+                                <div class="dropdown-menu">
+                                      <a class="dropdown-item text-danger" href="' .route('bestseller-destroy', $item->id). '">
+                                       Hapus
+                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    ';
+                })
+                ->rawColumns(['action'])
+                ->make();
+        }
+        return view('pages.admin.product-best-seller.index');
+    }
+
+    public function saveProductBestSeller($id)
+    {
+        $product    = Product::where('id', $id)->first();
+        $product_id = $product->id;
+
+        // cek apakah produk itu sudah ada di bestseller
+        $bestSeller = BestSeller::select('product_id')->where('product_id', $id)->get()->count();
+        if ($bestSeller > 0) {
+            return redirect()->back()->with(['error' => 'Gagal! Produk tersebut sudah terdaftar di Best Seller']);
+        }
+
+        // simpan produk ke dalam best seller
+        BestSeller::create(['product_id' => $product_id]);
+        return redirect()->route('product.index')->with(['success' => 'Produk Best Seller telah ditambakan']);
+
+    }
+
+    public function destroyPrductBestSeller($id)
+    {
+        $item = BestSeller::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('product-bestseller')->with(['success' => 'Produk Best Seller telah dihapus']);
+    }
 
 }

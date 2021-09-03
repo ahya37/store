@@ -140,6 +140,10 @@ Route::prefix('admin')
             Route::get('point/excel/format/download','PointController@downloadFormatExcel')->name('point-excel-format-download');
             Route::get('point/delete/all','PointController@deleteAll')->name('point-delete-all');
 
+            Route::get('bestseller','ProductController@productBestSeller')->name('product-bestseller');
+            Route::get('bestseller/save/{id}','ProductController@saveProductBestSeller')->name('product-bestseller-save');
+            Route::get('bestseller/destroy/{id}','ProductController@destroyPrductBestSeller')->name('bestseller-destroy');
+
         });
 
 Auth::routes();

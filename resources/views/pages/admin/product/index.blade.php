@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@push('addon-style')
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+@endpush
 @section('title')
     Product
 @endsection
@@ -15,16 +17,7 @@
               <div class="dashboard-content">
                 <div class="row">
                     <div class="col-md-12">
-                        @if (Session::has('error'))
-                            <div class="alert alert-warning">
-                                <p>{{ Session::get('error') }}</p>
-                            </div>
-                        @endif
-                        @if (Session::has('success'))
-                            <div class="alert alert-success">
-                                <p>{{ Session::get('success') }}</p>
-                            </div>
-                        @endif
+                        @include('layouts.message')
                         <div class="card">
                             <div class="card-body">
                                 <a href="{{ route('product.create') }}" class="btn btn-sm btn-primary mb-3">
@@ -40,12 +33,12 @@
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Nama</th>
+                                                <th>Produk</th>
                                                 <th>Pemilik</th>
                                                 <th>Kategori</th>
                                                 <th>Harga</th>
                                                 <th>Aksi</th>
+                                                <th>Best Seller</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -94,7 +87,6 @@
             url: '{!! url()->current() !!}',
         },
         columns:[
-            {data: 'id', name:'id'},
             {data: 'name', name:'name'},
             {data: 'user.name', name:'user.name'},
             {data: 'category.name', name:'category.name'},
@@ -102,6 +94,13 @@
             {
                 data: 'action', 
                 name:'action',
+                orderable: false,
+                searchable: false,
+                width: '15%'
+            },
+            {
+                data: 'bestseller', 
+                name:'bestseller',
                 orderable: false,
                 searchable: false,
                 width: '15%'

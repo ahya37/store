@@ -99,30 +99,30 @@
                 data-aos="fade-up"
                 data-aos-delay="{{ $incrementProduct += 100 }}"
               >
-                <a href="{{ route('detail', $product->slug) }}" class="component-products d-block">
+                <a href="{{ route('detail', $product->product->slug) }}" class="component-products d-block">
                   <div class="products-thumbnail">
                     <div
                       class="products-image"
                       style="
-                        @if($product->galleries->count())
-                            background-image:url('{{ Storage::url($product->galleries->first()->photos) }}')
+                        @if($product->product->galleries->count())
+                            background-image:url('{{ Storage::url($product->product->galleries->first()->photos) }}')
                         @else
                           background-color: #eee
                         @endif
                       "
                     ></div>
                   </div>
-                  <div class="products-text">{{ $product->name }}</div>
-                  <small class="products-stock">Stok: {{ $product->stock }}</small>
-                  <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->price)}}</div>
+                  <div class="products-text">{{ $product->product->name }}</div>
+                  <small class="products-stock">Stok: {{ $product->product->stock }}</small>
+                  <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($product->product->price)}}</div>
                 </a>
                  <div class="products-text">
-                  <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('detail-add', $product->product->id) }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
                       <button
-                        onclick="var result = document.getElementById('sst{{ $product->id}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                        onclick="var result = document.getElementById('sst{{ $product->product->id}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                         class="btn btn-sm btn-secondary input-group-text"
                         type="button"
                       >
@@ -130,16 +130,16 @@
                       </button>
                     </div>
                     <input
-                      type="text"
+                      type="number"
                       min="1"
                       value="1"
                       name="qty"
-                      id="sst{{ $product->id}}"
+                      id="sst{{ $product->product->id}}"
                       class="form-control form-control-sm text-center"
                     />
                     <div class="input-group-append">
                       <button
-                        onclick="var result = document.getElementById('sst{{ $product->id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                        onclick="var result = document.getElementById('sst{{ $product->product->id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                         class="btn btn-sm btn-secondary input-group-text"
                         type="button"
                       >
@@ -152,7 +152,7 @@
                         type="submit"
                         class="btn btn-success px-4 text-white btn-block mb-3"
                       >
-                        Tamabah Keranjang
+                        Tambah Keranjang
                       </button>
                     </div>
                   </div>
