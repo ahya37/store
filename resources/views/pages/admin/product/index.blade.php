@@ -33,6 +33,7 @@
                                     <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Produk</th>
                                                 <th>Pemilik</th>
                                                 <th>Kategori</th>
@@ -87,6 +88,7 @@
             url: '{!! url()->current() !!}',
         },
         columns:[
+            {data: 'id', name:'id'},
             {data: 'name', name:'name'},
             {data: 'user.name', name:'user.name'},
             {data: 'category.name', name:'category.name'},
