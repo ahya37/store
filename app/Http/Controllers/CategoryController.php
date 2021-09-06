@@ -41,11 +41,11 @@ class CategoryController extends Controller
         
         // ini dibuat untuk membuat kondisi di view aga jika 
         // tidak ada terlaris jangan di tampilkan section nya
-        $best_seller = [];
+        $best_seller = '';
         foreach ($product_best_seller as $value) {
-            $best_seller[] = $value->product;
+            $best_seller = $value->product;
         }
-      
+
         // return $product_best_seller;
         $globalFunction = app('GlobalFunction');
 

@@ -26,30 +26,30 @@
                 data-aos="fade-up"
                 data-aos-delay="{{ $incrementProduct += 100 }}"
               >
-                <a href="{{ route('detail', $best_seller->product->slug) }}" class="component-products d-block">
+                <a href="{{ route('detail', $best_seller->product->slug ?? '') }}" class="component-products d-block">
                   <div class="products-thumbnail">
                     <div
                       class="products-image"
                       style="
-                        @if($best_seller->product->galleries->count())
-                            background-image:url('{{ Storage::url($best_seller->product->galleries->first()->photos) }}')
+                        @if($best_seller->product->galleries->count() ?? '')
+                            background-image:url('{{ Storage::url($best_seller->product->galleries->first()->photos) ?? '' }}')
                         @else
                           background-color: #eee
                         @endif
                       "
                     ></div>
                   </div>
-                  <div class="products-text">{{ $best_seller->product->name }}</div>
-                  <small class="products-stock">Stok: {{ $best_seller->product->stock }}</small>
-                  <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($best_seller->product->price)}}</div>
+                  <div class="products-text">{{ $best_seller->product->name ?? '' }}</div>
+                  <small class="products-stock">Stok: {{ $best_seller->product->stock ?? ''}}</small>
+                  <div class="products-price">{{'Rp. '.$globalFunction->formatRupiah($best_seller->product->price ?? '')}}</div>
                 </a>
                 <div class="products-text">
-                  <form action="{{ route('detail-add', $best_seller->product->id) }}" method="POST" enctype="multipart/form-data">
+                  <form action="{{ route('detail-add', $best_seller->product->id) ?? ''}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="input-group input-group-sm">
                     <div class="input-group-prepend">
                       <button
-                        onclick="var result = document.getElementById('sst{{ $best_seller->product->id}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                        onclick="var result = document.getElementById('sst{{ $best_seller->product->id ?? ''}}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                         class="btn btn-sm btn-secondary input-group-text"
                         type="button"
                       >
@@ -61,12 +61,12 @@
                       min="1"
                       value="1"
                       name="qty"
-                      id="sst{{ $best_seller->product->id}}"
+                      id="sst{{ $best_seller->product->id ?? ''}}"
                       class="form-control form-control-sm text-center"
                     />
                     <div class="input-group-append">
                       <button
-                        onclick="var result = document.getElementById('sst{{ $best_seller->product->id}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                        onclick="var result = document.getElementById('sst{{ $best_seller->product->id ?? ''}}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                         class="btn btn-sm btn-secondary input-group-text"
                         type="button"
                       >
