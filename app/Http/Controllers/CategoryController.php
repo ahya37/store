@@ -43,7 +43,7 @@ class CategoryController extends Controller
         // tidak ada terlaris jangan di tampilkan section nya
         $best_seller = [];
         foreach ($product_best_seller as $value) {
-            $best_seller = $value->product;
+            $best_seller[] = $value->product;
         }
       
         // return $product_best_seller;

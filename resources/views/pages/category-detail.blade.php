@@ -9,7 +9,7 @@
       <section class="store-new-products">
         <div class="container">
           @if($best_seller != NULL)
-          <div class="row">
+          <div class="row mt-4">
             <div class="col-12" data-aos="fade-up">
               <h5>Produk Terlaris - Kategori  
               <b>
