@@ -17,11 +17,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::take(6)->get();
-        // $products   = Product::inRandomOrder()->take(20)->get();
-        $products = BestSeller::with('product')->get();
+        $product_all = Product::inRandomOrder()->take(20)->paginate(10);
+        $product_best_seller = BestSeller::with('product')->get();
 
         $globalFunction = app('GlobalFunction');
-        return view('pages.home', compact('categories','products','globalFunction'));
+        return view('pages.home', compact('categories','product_best_seller','globalFunction','product_all'));
     }
 
     public function products(Request $request)
