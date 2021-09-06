@@ -35,20 +35,16 @@ class CategoryController extends Controller
                     ->whereNull('a.id')
                     ->inRandomOrder()->paginate(10);
         // dd($products);
-        $product_best_seller = BestSeller::with(['product.galleries','product' => function($q) use ($category){
-            $q->where('categories_id', $category->id);
-        }])->get();
-        
-        // ini dibuat untuk membuat kondisi di view aga jika 
-        // tidak ada terlaris jangan di tampilkan section nya
-        $best_seller = '';
-        foreach ($product_best_seller as $value) {
-            $best_seller = $value->product;
-        }
-
+        $product_best_seller =  DB::table('best_sellers as a')
+                                ->join('products as b','a.product_id','=','b.id')
+                                ->join('product_galleries as c','b.id','=','c.products_id')
+                                ->select('b.*','c.photos')
+                                ->where('b.categories_id', $category->id)
+                                ->get();
+        $count_product_best_seller = count($product_best_seller);
         // return $product_best_seller;
         $globalFunction = app('GlobalFunction');
 
-        return view('pages.category-detail', compact('best_seller','category','categories','products','globalFunction','product_best_seller'));
+        return view('pages.category-detail', compact('count_product_best_seller','category','categories','products','globalFunction','product_best_seller'));
     }
 }
