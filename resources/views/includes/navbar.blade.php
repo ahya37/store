@@ -51,11 +51,11 @@
       data-aos="fade-down"
     >
       <div class="container">
-        <a href="{{ route('home') }}" class="navbar-brand">
-          <img src="/images/logo.png" alt="logo" style="width:52px;" />
-        </a>
-         <div>
-          <form action="{{ route('search-product') }}" method="POST" class="form-inline my-2 my-lg-0">
+        <div class="d-none d-lg-flex">
+           <a href="{{ route('home') }}" class="navbar-brand">
+             <img src="/images/logo.png" alt="logo" style="width:52px;" />
+           </a>
+          <form action="{{ route('search-product') }}" method="POST" class="form-inline">
             @csrf
             <div class="input-group">
               <input
@@ -72,6 +72,33 @@
             </div>
           </form>
         </div>
+
+        <div class="d-lg-none">
+           <a href="{{ route('home') }}" class="navbar-brand">
+             <img src="/images/logo.png" alt="logo" style="width:30px;" />
+           </a>
+           <div class="row">
+             <div class="col-sm-5">
+               <form action="{{ route('search-product') }}" method="POST" class="form-inline">
+                 @csrf
+                 <div class="input-group">
+                   <input
+                     type="text"
+                     class="form-control"
+                     name="q"
+                     placeholder="Cari Produk di Percikanshop"
+                   />
+                   <div class="input-group-append">
+                     <span class="input-group-text" id="basic-addon2"
+                       ><i class="fa fa-search" aria-hidden="true"></i
+                     ></span>
+                   </div>
+                 </div>
+               </form>
+             </div>
+           </div>
+        </div>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
